@@ -112,7 +112,7 @@ cin >> days;
 int minutes = days * day;
 cout << days << " days is " << minutes << " minutes" << endl;
 
-
+system("pause");
 
 
 }
