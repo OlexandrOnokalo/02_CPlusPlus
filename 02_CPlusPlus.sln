@@ -9,6 +9,8 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "02_Logic_Operator", "02_Log
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "03_Switch_Enum_04_While", "03_Switch_Enum_04_While\03_Switch_Enum_04_While.vcxproj", "{F4EF27EA-9276-487B-9C19-F21FC604C5A1}"
 EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "05_for_06_includeCycles", "05_for_06_includeCycles\05_for_06_includeCycles.vcxproj", "{BAAEA332-8285-4BE9-8970-55E1C16E0C50}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|x64 = Debug|x64
@@ -41,6 +43,14 @@ Global
 		{F4EF27EA-9276-487B-9C19-F21FC604C5A1}.Release|x64.Build.0 = Release|x64
 		{F4EF27EA-9276-487B-9C19-F21FC604C5A1}.Release|x86.ActiveCfg = Release|Win32
 		{F4EF27EA-9276-487B-9C19-F21FC604C5A1}.Release|x86.Build.0 = Release|Win32
+		{BAAEA332-8285-4BE9-8970-55E1C16E0C50}.Debug|x64.ActiveCfg = Debug|x64
+		{BAAEA332-8285-4BE9-8970-55E1C16E0C50}.Debug|x64.Build.0 = Debug|x64
+		{BAAEA332-8285-4BE9-8970-55E1C16E0C50}.Debug|x86.ActiveCfg = Debug|Win32
+		{BAAEA332-8285-4BE9-8970-55E1C16E0C50}.Debug|x86.Build.0 = Debug|Win32
+		{BAAEA332-8285-4BE9-8970-55E1C16E0C50}.Release|x64.ActiveCfg = Release|x64
+		{BAAEA332-8285-4BE9-8970-55E1C16E0C50}.Release|x64.Build.0 = Release|x64
+		{BAAEA332-8285-4BE9-8970-55E1C16E0C50}.Release|x86.ActiveCfg = Release|Win32
+		{BAAEA332-8285-4BE9-8970-55E1C16E0C50}.Release|x86.Build.0 = Release|Win32
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

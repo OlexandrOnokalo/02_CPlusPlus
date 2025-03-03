@@ -14,6 +14,8 @@ ctrl + alt + l  відкривається права панель з файла
 
 ctrl + K + F  виправляється формат коду
 
+F10 debager
+
 -------------------------
 #include<iostream>
 using namespace std;
@@ -248,6 +250,45 @@ enum coins{penny, nickel, dime = 10, quarter, half= -1 , dollar_coin }; - йде
 
 
 ========================================================================
+05_for_06_includeCycles
+
+Цикл for, Вкладені цикли, Debuger
 
 Цикл з параметрами(for).
  
+	for (size_t i = 0; i < length; i++)
+	
+	for (int i = 0; i < 10; i++) - i створюються всередині циклу і знищується
+	{
+		cout << i << " ";
+	}
+break, continue працюють
+	
+Безкінечний цикл
+int number;
+	int sum = 0;
+	for ( ;  ;  )// реалізація нескінченного циклу
+	{
+		cout << "Enter number : "; 
+		cin >> number;
+		if (number == 0)break;
+		sum += number;
+	}
+	cout << "Suma all numbers = " << sum << endl;
+	
+Вкладені цикли
+
+	int size = 10;
+
+    for (int i = 0; i < size; i++)
+    {
+        for (int j = 0; j < size; j++)
+        {
+            if (i >= j && i + j >= size - 1)
+                cout << "|===|";
+            else
+                cout << "     ";
+        }
+        cout << endl;
+    }
+	
