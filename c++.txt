@@ -40,7 +40,7 @@ cout << "You have to pay : " << price << " grn"; - вивід змінної pri
 			int - 4b 
 			short 2b from -32768 to 32767
 			long 4b 
-			longlong 8b - нереально велике число
+			long long 8b - нереально велике число
 			
 			unsigned int - тільки в додатньому діапізоні
 	2.Текст
@@ -329,3 +329,41 @@ for (int i = 0; i < SIZE; i++)
         cout << arr5[i] << " ";
     }
     cout << endl;
+
+========================================================================
+08_Random_Matrix
+
+Види пам"яті
+Stack - елементи складаються одна на одну
+Static - 
+Heap Denamic memory
+
+srand(time(0)); - вказує точку відправки відносно часу, вказується ОДИН раз на початку коду
+а = rand(); - згенерує ціле число від 0 до 32767
+
+ЧИСЛО В ДІАПАЗОНІ ВІД НУЛЯ ДО Х: rand() % X
+
+ЧИСЛО В ДІАПАЗОНІ ВІД Х  ДО Y : rand() % (Y - X) + X
+        //(16-11)
+        a = rand() % (16-11) + 11;
+
+Багатовимірні масиви 
+Матриця - це сукупність одновимірних масивів
+
+	srand(time(0));
+	
+	const int row = 5;
+	const int col = 6;
+	int array[row][col];
+    
+    for (int i = 0; i < row; i++)
+    {
+        for (int j = 0; j < col; j++)
+        {
+            array[i][j] = rand() % 90 + 10;//10...100
+            cout << array[i][j] << " ";
+        }
+        cout << endl;
+    }
+    cout << endl;
+
