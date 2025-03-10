@@ -11,7 +11,7 @@ void main() {
     const int row = 5;
     const int col = 6;
 
-    /*int count = 0;
+    int count = 0;
     int array1[row][col];
 
     for (int i = 0; i < row; i++)
@@ -36,12 +36,12 @@ void main() {
             
         }
     }
-    cout << "Count of non zero = " << count << endl;*/
+    cout << "Count of non zero = " << count << endl;
 
     /*2.Дано масив розміром 3×3 з елементами цілого типу.
     Визначити кількість елементів які б дорівнювали нулю.*/
 
-    /*int count = 0;
+    int count = 0;
     int array1[row][col];
 
     for (int i = 0; i < row; i++)
@@ -66,12 +66,12 @@ void main() {
 
         }
     }
-    cout << "Count of zero = " << count << endl;*/
+    cout << "Count of zero = " << count << endl;
 
     /*3.Дано масив розміром 7×3 з елементами цілого типу.
     Визначити кількість елементів, модуль яких менший 12. (-20 + rand() % 40)*/
 
-    /*int count = 0;
+    int count = 0;
     int arr[row][col];
 
     for (int i = 0; i < row; i++)
@@ -97,13 +97,13 @@ void main() {
 
         }
     }
-    cout << "count of range -12 to 12 = " << count << endl;*/
+    cout << "count of range -12 to 12 = " << count << endl;
 
 
     /*4.Дано масив розміром 4×5 з елементами цілого типу(позитивні та від’ємні).
     Визначити кількість позитивних елементів.*/
 
-    /*int count = 0;
+    int count = 0;
     int arr[row][col];
 
     for (int i = 0; i < row; i++)
@@ -129,13 +129,13 @@ void main() {
 
         }
     }
-    cout << "count of positive = " << count << endl;*/
+    cout << "count of positive = " << count << endl;
 
     /*5.Дано масив розміром 5×4 з елементами дійсного типу(додатні та від’ємні).
     Визначити добуток всіх додатніх елементів.*/
 
     
-    /*int arr[row][col];
+    int arr[row][col];
     int product = 1;
 
     for (int i = 0; i < row; i++)
@@ -161,12 +161,12 @@ void main() {
 
         }
     }
-    cout << "Product of pisitive = " << product << endl;*/
+    cout << "Product of pisitive = " << product << endl;
 
     /*6.Дано масив розміром 5×4 з елементами дійсного типу(позитивні та від’ємні).
         Визначити добуток всіх від’ємних елементів.*/
 
-    /*int arr[row][col];
+    int arr[row][col];
     int product = 1;
 
     for (int i = 0; i < row; i++)
@@ -192,12 +192,12 @@ void main() {
 
         }
     }
-    cout << "Product of negative = " << product << endl;*/
+    cout << "Product of negative = " << product << endl;
 
     /*7.Дано масив розміром 4×4 з елементами цілого типу.Визначити кількість
         елементів, які б при діленні на 6 давали залишок 1. 13 % 6 = 1*/
 
-    /*int count = 0;
+    int count = 0;
     int arr[row][col];
 
     for (int i = 0; i < row; i++)
@@ -223,11 +223,11 @@ void main() {
 
         }
     }
-    cout << "count = " << count << endl;*/
+    cout << "count = " << count << endl;
 
     /*8.Дано масив розміром 5хб цілого типу.Знайти мінімальний елемент.*/
 
-    /*int arr[row][col];
+    int arr[row][col];
     int min;
 
     for (int i = 0; i < row; i++)
@@ -254,12 +254,12 @@ void main() {
 
         }
     }
-    cout << "Minimum element = " << min << endl;*/
+    cout << "Minimum element = " << min << endl;
 
     /*9.Дано масив розміром 5×6 цілого типу.Знайти максимальний елемент.*/
 
 
-    /*int arr[row][col];
+    int arr[row][col];
     int max;
 
     for (int i = 0; i < row; i++)
@@ -287,12 +287,12 @@ void main() {
 
         }
     }
-    cout << "Maximum element = " << max << endl;*/
+    cout << "Maximum element = " << max << endl;
 
     /*10.Дано масив розміром 5×4 з елементами дійсного типу(позитивні та від’ємні).
         Визначити суму всіх від’ємних елементів.*/
 
-    /*int arr[row][col];
+    int arr[row][col];
     int sum = 0;
 
     for (int i = 0; i < row; i++)
@@ -318,7 +318,282 @@ void main() {
 
         }
     }
-    cout << "Sum of negative = " << sum << endl;*/
+    cout << "Sum of negative = " << sum << endl;
+
+
+                //      home work assignment from the file ДЗ.png
+
+
+    const int row2 = 9;
+    const int col2 = 9;
+    int arr[row2][col2];
+    int N = 9;
+
+    cout << "Matrix:" << endl;
+    for (int i = 0; i < row2; i++)
+    {
+        for (int j = 0; j < col2; j++)
+        {
+            arr[i][j] = ((rand() % 89) +10);
+            cout << arr[i][j] << " ";
+        }
+        cout << endl;
+    }
+    cout << endl;
+
+    cout << "Figures:"<<endl;
+
+    int max = arr[0][0];
+
+
+    for (int i = 0; i < row2; i++)
+    {
+        for (int j = 0; j < col2; j++)
+        {
+            if (i <= j)
+            {
+                cout << " " << arr[i][j];
+                if (arr[i][j] > max)
+                {
+                    max = arr[i][j];
+                }
+            }
+            else
+            {
+                cout << "   ";
+            }
+        
+        }
+        cout << endl;
+    }
+    cout << "\nmax 1 = "<< max << endl;
+    cout << endl;
+
+
+    max = arr[0][0];
+
+    for (int i = 0; i < row2; i++)
+    {
+        for (int j = 0; j < col2; j++)
+        {
+            if (i >= j)
+            {
+                cout << " " << arr[i][j];
+                if (arr[i][j] > max)
+                {
+                    max = arr[i][j];
+                }
+            }
+            else
+            {
+                cout << "   ";
+            }
+
+        }
+        cout << endl;
+    }
+    cout << "\nmax 2 = " << max << endl;
+    cout << endl;
+
+    max = arr[0][0];
+
+    for (int i = 0; i < row2; i++)
+    {
+        for (int j = 0; j < col2; j++)
+        {
+            if (i <= j && i + j <= N - 1)
+            {
+                cout << " " << arr[i][j];
+                if (arr[i][j] > max)
+                {
+                    max = arr[i][j];
+                }
+            }
+            else
+            {
+                cout << "   ";
+            }
+
+        }
+        cout << endl;
+    }
+    cout << "\nmax 3 = " << max << endl;
+    cout << endl;
+
+    max = arr[4][4];
+
+    for (int i = 0; i < row2; i++)
+    {
+        for (int j = 0; j < col2; j++)
+        {
+            if (i >= j && i + j >= N - 1)
+            {
+                cout << " " << arr[i][j];
+                if (arr[i][j] > max)
+                {
+                    max = arr[i][j];
+                }
+            }
+            else
+            {
+                cout << "   ";
+            }
+
+        }
+        cout << endl;
+    }
+    cout << "\nmax 4 = " << max << endl;
+    cout << endl;
+
+
+    max = arr[0][0];
+    for (int i = 0; i < row2; i++)
+    {
+        for (int j = 0; j < col2; j++)
+        {
+            if (i >= j && i + j >= N - 1 || i <= j && i + j <= N - 1)
+            {
+                cout << " " << arr[i][j];
+                if (arr[i][j] > max)
+                {
+                    max = arr[i][j];
+                }
+            }
+            else
+            {
+                cout << "   ";
+            }
+
+        }
+        cout << endl;
+    }
+    cout << "\nmax 5 = " << max << endl;
+    cout << endl;
+
+
+    max = arr[0][0];
+    for (int i = 0; i < row2; i++)
+    {
+        for (int j = 0; j < col2; j++)
+        {
+            if (i <= j && i + j >= N - 1 || i >= j && i + j <= N - 1)
+            {
+                cout << " " << arr[i][j];
+                if (arr[i][j] > max)
+                {
+                    max = arr[i][j];
+                }
+            }
+            else
+            {
+                cout << "   ";
+            }
+
+        }
+        cout << endl;
+    }
+    cout << "\nmax 6 = " << max << endl;
+    cout << endl;
+
+    max = arr[0][0];
+    for (int i = 0; i < row2; i++)
+    {
+        for (int j = 0; j < col2; j++)
+        {
+            if (i >= j && i + j <= N - 1)
+            {
+                cout << " " << arr[i][j];
+                if (arr[i][j] > max)
+                {
+                    max = arr[i][j];
+                }
+            }
+            else
+            {
+                cout << "   ";
+            }
+
+        }
+        cout << endl;
+    }
+    cout << "\nmax 7 = " << max << endl;
+    cout << endl;
+
+    max = arr[0][8];
+    for (int i = 0; i < row2; i++)
+    {
+        for (int j = 0; j < col2; j++)
+        {
+            if (i <= j && i + j >= N - 1)
+            {
+                cout << " " << arr[i][j];
+                if (arr[i][j] > max)
+                {
+                    max = arr[i][j];
+                }
+            }
+            else
+            {
+                cout << "   ";
+            }
+
+        }
+        cout << endl;
+    }
+    cout << "\nmax 8 = " << max << endl;
+    cout << endl;
+
+    max = arr[0][0];
+    for (int i = 0; i < row2; i++)
+    {
+        for (int j = 0; j < col2; j++)
+        {
+            if (i + j <= N - 1)
+            {
+                cout << " " << arr[i][j];
+                if (arr[i][j] > max)
+                {
+                    max = arr[i][j];
+                }
+            }
+            else
+            {
+                cout << "   ";
+            }
+
+        }
+        cout << endl;
+    }
+    cout << "\nmax 9 = " << max << endl;
+    cout << endl;
+
+
+    max = arr[0][8];
+    for (int i = 0; i < row2; i++)
+    {
+        for (int j = 0; j < col2; j++)
+        {
+            if (i + j >= N - 1)
+            {
+                cout << " " << arr[i][j];
+                if (arr[i][j] > max)
+                {
+                    max = arr[i][j];
+                }
+            }
+            else
+            {
+                cout << "   ";
+            }
+
+        }
+        cout << endl;
+    }
+    cout << "\nmax 10 = " << max << endl;
+    cout << endl;
+
+
+
 
 
 
