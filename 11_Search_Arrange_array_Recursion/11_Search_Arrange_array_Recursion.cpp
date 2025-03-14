@@ -2,6 +2,27 @@
 #include <iostream>
 using namespace std;
 
+void print(const int arr[], int size)
+{
+	for (int i = 0; i < size; i++)
+	{
+		cout << "\t" << arr[i];
+	}
+	cout << endl;
+}
+
+void fillRandomUp(int arr[], int size, int left, int right)
+{
+	srand(time(0));
+	arr[0] = left + rand() % ((right - left) / 2 + 1);
+	for (int i = 1; i < size; i++)
+	{
+		arr[i] = arr[i - 1] + rand() % ((right - left) / 2);
+	}
+}
+
+
+
 
 // Визначити функцію прямого пошуку як шаблон. ПЕревірити роботу функції на масиві цілих, дробових, char,
 
@@ -20,22 +41,33 @@ using namespace std;
 
 // 2.Визначити функцію(шаблон) для покращеного лінійного пошуку у впорядкованому масиві
 
-template <typename T>
-int searchKey(T key, T arr[], int size)
+//template <typename T>
+//T searchKey(T key, T arr[], int size)
+//{
+//	for (int i = 0; i < size; i++)
+//	{
+//		if (arr[i] == key)
+//		{
+//			return i;
+//		}
+//		else if (arr[i]>key)
+//		{
+//			return -1;
+//		}
+//		cout << arr[i] << endl;
+//	}
+//	return -1;
+//}
+
+/*Впорядкування массиву*/
+
+void bubbleSort(int arr[], int size)
 {
-	for (int i = 0; i < size; i++)
+	bool flag = true;
+	for (int i = 0; i < length; i++)
 	{
-		if (arr[i] == key)
-		{
-			return i;
-		}
-		else if (arr[i]>key)
-		{
-			return -1;
-		}
-		cout << arr[i] << endl;
+
 	}
-	return -1;
 }
 
 
@@ -76,16 +108,18 @@ int main()
 
 	//2.Визначити функцію(шаблон) для покращеного лінійного пошуку у впорядкованому масиві
 
-	cout << "Enter a key : " << endl;
+	/*cout << "Enter a key : " << endl;
 
 	int arr[SIZE] = { 10,20,30,40,50,60,70 };
 	int key;
 	cin >> key;
 	int index = searchKey(key, arr, SIZE);
-	cout << "Index of key = " << index << endl;
+	cout << "Index of key = " << index << endl;*/
 
 
+	/*Впорядкування массиву*/
 
+	
 
 
 
