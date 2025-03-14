@@ -463,6 +463,55 @@ T2 Max(T1 a, T2 b)
 }
 
 
+========================================================================
+
+Пошук у масиві. Впорядкування масиву. Рекурсія.
+Кирик Тетяна Анатоліївна
+Олена Сергіївна
+
+Пошук у масиві
+
+Лінійний пошук  - звичайний пошук через for
+
+template <typename T>
+int searchKey(T key, T arr[], int size)
+{
+	for (int i = 0; i < size; i++)
+	{
+		if (arr[i]==key)
+		{
+			return i;
+		}
+	}
+	return -1;
+}
+
+Швидкий пошук для упорядкованого масиву (від меньшого до більшого)
+template <typename T>
+int searchKey(T key, T arr[], int size)
+{
+	for (int i = 0; i < size; i++)
+	{
+		if (arr[i] == key)
+		{
+			return i;
+		}
+		else if (arr[i]>key)
+		{
+			return -1;
+		}
+		cout << arr[i] << endl;
+	}
+	return -1;
+}
+
+Бінарний пошук на упорядкованому масиву
+?
+Сортування вибором
+?
+
+Бульбашка
+bubble Sort
 
 
 

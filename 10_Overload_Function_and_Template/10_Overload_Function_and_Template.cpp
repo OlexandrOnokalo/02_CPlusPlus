@@ -349,6 +349,14 @@ int main()
     printmatrix(charMatrix, SIZE);
     
 
+
+    for (int i = 0; i < size; i++)
+    {
+        if (arr=[1])
+        {
+
+        }
+    }
         
 
 }
