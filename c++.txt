@@ -349,6 +349,19 @@ srand(time(0)); - вказує точку відправки відносно ч
 		// -20 ... +20
 		((rand() % 40) - 20)
 
+		
+void fillRandomUp(int arr[], int size, int left, int right)
+{
+	srand(time(0));
+	for (int i = 0; i < size; i++)
+	{
+		arr[i] = (rand() % (right - left)+left);
+	}
+}		
+		
+		
+		
+
 Багатовимірні масиви 
 Матриця - це сукупність одновимірних масивів
 
@@ -471,7 +484,7 @@ T2 Max(T1 a, T2 b)
 
 Пошук у масиві
 
-Лінійний пошук  - звичайний пошук через for
+Лінійний пошук   - звичайний пошук через for
 
 template <typename T>
 int searchKey(T key, T arr[], int size)
@@ -506,12 +519,95 @@ int searchKey(T key, T arr[], int size)
 }
 
 Бінарний пошук на упорядкованому масиву
-?
-Сортування вибором
-?
+
+int binarySearch(int key, const int arr[], int size)
+{
+    int left = 0, right = size - 1;
+    int mid;// = (left + right) / 2;
+    while (left <= right)
+    {
+        mid = (left + right) / 2;
+        if (arr[mid] == key)
+            return mid;
+        if (key > arr[mid])
+            left = mid + 1;
+        else
+            right = mid - 1;
+    }
+    return -1;
+}
+
+Сортування вибором Selection Sort
+
+void selectSort(int arr[], int size)
+{
+    for (int step = 0; step < size - 1; step++) 
+    {
+        int min = arr[step];
+        int indexMin = step;
+        for (int i = step + 1; i < size; i++)
+        {
+            if (arr[i] < min)
+            {
+                min = arr[i];
+                indexMin = i;
+            }
+        }
+        cout << "Min " << min << "\tindex = " << indexMin << endl;
+        swap(arr[indexMin], arr[step]);
+        print(arr, size);
+    }
+}
 
 Бульбашка
 bubble Sort
+Сложность алгоритма: В худшем и среднем случае: O(n²)
+
+void bubbleSort(int arr[], int size)
+{
+    bool flag = true;
+    for (int step = 0; step < size - 1; step++)
+    {
+        flag = false;
+        for (int j = 0; j < size - 1 - step; j++)
+        {
+            if (arr[j] > arr[j + 1])
+            {
+                swap(arr[j], arr[j + 1]);
+                
+                flag = true;
+            }
+        }
+        if (flag == false)
+            break;
+        cout << "______end of iteration #"  << step + 1 << "___________________________\n";
+    }
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
