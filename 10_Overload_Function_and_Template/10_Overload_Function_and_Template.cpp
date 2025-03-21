@@ -258,7 +258,7 @@ int main()
 {
     int a = 1, b = 5, c = 10;
     srand(time(0));
-    cout << "Max2: " << max(a, b) << endl;
+    /*cout << "Max2: " << max(a, b) << endl;
     cout << "Max3: " << max(a, b, c) << endl;
 
     cout << "Min2: " << min(a, b) << endl;
@@ -301,7 +301,7 @@ int main()
     numzero(array2, size2);
 
     
-    cout << "\n\n\n\n\n\n\n";
+    cout << "\n\n\n\n\n\n\n";*/
 
     const int SIZE = 5;
 
@@ -350,13 +350,6 @@ int main()
     
 
 
-    for (int i = 0; i < size; i++)
-    {
-        if (arr=[1])
-        {
-
-        }
-    }
         
 
 }
