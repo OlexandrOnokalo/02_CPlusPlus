@@ -17,6 +17,11 @@ ctrl + K + F  виправляється формат коду
 
 F10 debager
 
+alt + стрілка - переносить рядок
+ctrl + D - копіює рядок вниз
+ctrl + shift + V - історія буфера 
+ctrl + r + r - заміняє виділене скрізь 
+
 -------------------------
 #include<iostream>
 using namespace std;
@@ -860,5 +865,48 @@ void SetPos(int x, int y)
 
 
 system("cls"); - затирає консоль
+
+
+========================================================================
+
+Рядки. Стандартні рядкові функції.
+Кирик Тетяна Анатоліївна
+
+#include <cstring>
+
+const int size = 200;
+char str[size] = "C style string - Standart function strcpy()";
+cout << str + 20 << endl; - показує рядок з 21 символа
+char copyStr[size]
+
+strcpy_s(copyStr, str); - копіює з str  у copyStr
+strcat_s(copyStr, "new text") - приєднує текст до кінця рядка
+
+strcmp(one,two);  - результат 0, значить однак4ові
+більше нуля - перший рядок більший
+меньше нуля - перший рядок меньший
+
+strncmp(one,two, 4) - рівняються тільки 4 символа
+_stricmp(one,two) - ігнорує регістр
+
+
+
+Функції пошуку
+
+пошук символу:
+char symbol = 't';
+char* p = strchr(str,symbol); - вертає вказівник на ячейку з першим входженням (шукає спочтку), або nullptr якщо не знайшла 
+
+strrchr(str,symbol); - шукає справа (останнє входження)
+
+пошук слів
+strstr(str,word); - вертає вказівник на першу букву цього слова
+
+
+
+
+
+
+
 
 
