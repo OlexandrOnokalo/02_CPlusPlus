@@ -17,7 +17,10 @@ void main() {
 	int* arr = createArr(size);
 	fillArrayWithRand(arr, size);
 	printArray(arr, size);
-
+	int element;
+	cout << "Enter element to add at front: ";
+	cin >> element;
+	
 
 
 
