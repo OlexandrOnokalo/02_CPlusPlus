@@ -1,4 +1,4 @@
-#include <iostream>
+п»ї#include <iostream>
 using namespace std;
 
 int* createArr(int size);
@@ -55,7 +55,7 @@ void main() {
 	insertAt(arr, size, index, element);
 	printArray(arr, size);
 	
-	/*5. Визначити функцію видалення усіх від'ємних елементів із динамічного масиву. */
+	/*5. Р’РёР·РЅР°С‡РёС‚Рё С„СѓРЅРєС†С–СЋ РІРёРґР°Р»РµРЅРЅСЏ СѓСЃС–С… РІС–Рґ'С”РјРЅРёС… РµР»РµРјРµРЅС‚С–РІ С–Р· РґРёРЅР°РјС–С‡РЅРѕРіРѕ РјР°СЃРёРІСѓ. */
 	cout << "Task 5: Removing negative elements" << endl;
 	cout << "Enter size of array:  ";
 	cin >> size;
@@ -68,7 +68,7 @@ void main() {
 	cout << "Result: " << endl;
 	printArray(arr, size);
 
-	/*6. Створити функцію, яка дозволяє додати блок елементів у кінець  масиву.*/
+	/*6. РЎС‚РІРѕСЂРёС‚Рё С„СѓРЅРєС†С–СЋ, СЏРєР° РґРѕР·РІРѕР»СЏС” РґРѕРґР°С‚Рё Р±Р»РѕРє РµР»РµРјРµРЅС‚С–РІ Сѓ РєС–РЅРµС†СЊ  РјР°СЃРёРІСѓ.*/
 
 	cout << "Task 6: Adding a block to the end of array" << endl;
 	int sizeBlock;
@@ -82,7 +82,7 @@ void main() {
 	cout << "Result: " << endl;
 	printArray(arr, size);
 
-	/*7.  Створити функцію, яка дозволяє вилучити  блок елементів, починаючи із  вказаного індекса вказаної  довжини*/
+	/*7.  РЎС‚РІРѕСЂРёС‚Рё С„СѓРЅРєС†С–СЋ, СЏРєР° РґРѕР·РІРѕР»СЏС” РІРёР»СѓС‡РёС‚Рё  Р±Р»РѕРє РµР»РµРјРµРЅС‚С–РІ, РїРѕС‡РёРЅР°СЋС‡Рё С–Р·  РІРєР°Р·Р°РЅРѕРіРѕ С–РЅРґРµРєСЃР° РІРєР°Р·Р°РЅРѕС—  РґРѕРІР¶РёРЅРё*/
 	cout << "Task 7: Removing a block from the array" << endl;
 	int	length;
 	cout << "Enter index of start remove: ";
