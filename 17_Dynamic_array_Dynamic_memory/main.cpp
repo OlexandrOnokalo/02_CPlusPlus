@@ -55,7 +55,8 @@ void main() {
 	insertAt(arr, size, index, element);
 	printArray(arr, size);
 	
-	/*5. Визначити функцію видалення усіх від'ємних елементів із динамічного масиву. */
+
+	/*5. Визначити функцію видалення усіх від'ємних елементів із динамічного масиву   */
 	cout << "Task 5: Removing negative elements" << endl;
 	cout << "Enter size of array:  ";
 	cin >> size;
