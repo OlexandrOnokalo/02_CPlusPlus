@@ -960,5 +960,104 @@ void fillArrayWithRand(int* arr, int size)
 В функцію вводим int * & arr, виходить посилання на вказівник, в кінці arr = temp; - щоб вказати по посиланню вказівник уже на новий массив
 
 
+========================================================================
+Pointer_to_pointer_Dynamic_Matrix
+Вказівник на вказівник. Динамічні двовимірні масиви
+
+	int * p = new int{120}; - вказує на ділянку в хіпі
+	int * * p2 = &p. - він вказує на р, тобто він містить адресу самої змінної р.
+
+	cout<< **p2<< endl; - показує зміст 120
+
+	*(arr+i) = arr[i]
+
+	int * arr = new int [3] {100,200,300}
+	arr[0] = *(arr+0)
 
 
+
+Динамічні двовимірні масиви
+
+Полу динамічний:
+	const int ROWS = 3;
+	int * matrix[ROWS];
+	int cols = 4;
+
+
+	matrix[i] = new int [cols] {};
+	*(*(matrix+1)+2) =  matrix[1][2] - 
+	matrix[0][0] = 120; - задаємо значення
+	delete [] matrix [i]
+
+
+Повно динамічний масив
+
+int rows; (просто НЕ константа змінна, можно з клавіатури)
+int cols; (просто НЕ константа змінна, можно з клавіатури)
+
+int ** matrix = new int* [rows]; (вказівник на динамічну матрицю, але поки створенний тільки масив ВКАЗІВНИКІВ на майбетні рядки
+
+
+
+
+	const int ROWS = 3;
+	int* matrix[ROWS];
+	int cols;
+
+	cout << "Enter number of columns : ";
+	cin >> cols;
+
+	for (int i = 0; i < ROWS; i++)
+	{
+		matrix[i] = new int[cols] {};
+	}
+
+
+void printMatrix(int** m, int r, int c)
+{
+	if (m == nullptr)
+	{
+		cout << "Empty matrix!\n";
+		return;
+	}
+	for (int i = 0; i < r; i++)
+	{
+		for (int j = 0; j < c; j++)
+		{
+			cout << m[i][j] << "\t";
+		}
+		cout << endl;
+	}
+}
+
+void removeMatrix(int**& m, int r)
+{
+	for (int i = 0; i < r; i++)
+	{
+		delete[] m[i]; // вилучаємо кожен рядок у циклі
+	}
+	delete[] m;  // вилучаємо масив вказівників
+	
+	m = nullptr;
+}
+
+
+void addRow(int**& m, int& r, int c, int value)
+{
+	++r; // збільшили кількість рядків + 1
+	int** tmp = new int* [r]; // створили маси вказівників на рядки більшого розміру +1
+
+	for (int i = 0; i < r - 1 ; i++)
+	{
+		tmp[i] = m[i]; // перечипили старі рядки у новий масив вказівників 
+	}
+
+	tmp[r - 1] = new int[c]; // створили новий рядок як останній у новій матриці
+	for (int j = 0; j < c; j++)
+	{
+		tmp[r - 1][j] = value; //заповнили новий рядок однаковими значеннями value
+	}
+
+	delete[] m;
+	m = tmp;
+}
