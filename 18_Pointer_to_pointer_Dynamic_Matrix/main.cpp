@@ -1,56 +1,57 @@
 ﻿#include <iostream>
 using namespace std;
 
-void printMatrix(int** m, int r, int c);
-void removeMatrix(int**& m, int r);
-void addRow(int**& m, int& r, int c, int value);
 int** createMatrix(int rows, int cols);
+void fillMatrixWithRand(int**& matrix, int row, int cols);
+void printMatrix(int** m, int r, int c);
+void addRowToFront(int**& m, int& r, int c, int value);
+void removeRowbyIndex(int**& matrix, int& rows, int index);
+void addRowbyIndex(int**& matrix, int& rows, int cols, int index, int value);
+int** createTrianMatrix(int rows);
+void printTrianMatrix(int** m, int rows);
+void fillRandTrianMatrix(int** m, int rows, int left = 0, int right = 100);
 
 
-void main()
-{
-	  /*1. Знайти суму та добуток трьох числових даних.Виконати через вказівники на вкаазівники.*/
-	int* a = new int{ 5 };
-	int** a2 = &a;
+void main() {
+    srand(time(0));
 
-	int* b = new int{ 10 };
-	int** b2 = &b;
+    int rows, cols;
+    cout << "Create matrix\nEnter rows and cols: ";
+    cin >> rows >> cols;
 
-	int* c = new int{ 15 };
-	int** c2 = &c;
+    int** matrix = createMatrix(rows, cols);
+    fillMatrixWithRand(matrix, rows, cols);
+    printMatrix(matrix, rows, cols);
 
-	cout << "a = " << **a2 << endl;
-	cout << "b = " << **b2 << endl;
-	cout << "c = " << **c2 << endl;
+    cout << "New row added to the front\n";
+    addRowToFront(matrix, rows, cols, -1);
+    printMatrix(matrix, rows, cols);
 
-	cout << "Product = " << **a2 * **b2 * **c2 << endl;
+    int index;
+    cout << "Enter index of the row to delete from matrix: ";
+    cin >> index;
+    removeRowbyIndex(matrix, rows, index);
+    printMatrix(matrix, rows, cols);
 
+    cout << "Enter index to insert a new row: ";
+    cin >> index;
+    addRowbyIndex(matrix, rows, cols, index, -2);
+    printMatrix(matrix, rows, cols);
 
-	/*2. Написати функцію створення динамічної матриці за двома розмірами.*/
+    cout << "\nTriangle matrix test\nEnter number of rows: ";
+    cin >> rows;
 
-	cout << "Task 2:" << endl;
+    int** triMatrix = createTrianMatrix(rows);
+    fillRandTrianMatrix(triMatrix, rows);
+    printTrianMatrix(triMatrix, rows);
 
-	int rows;
-	int cols;
-	cout << "Enter number of rows : ";
-	cin >> rows;
+    // Освобождение памяти
+    for (int i = 0; i < rows; i++) {
+        delete[] matrix[i];
+        delete[] triMatrix[i];
+    }
+    delete[] matrix;
+    delete[] triMatrix;
 
-	cout << "Enter number of columns : ";
-	cin >> cols;
-
-	int** matrix = createMatrix(rows,cols);
-
-	printMatrix(matrix, rows, cols);
-
-
-
-
-	
-
-
-	
-
-
-
-
+    
 }
