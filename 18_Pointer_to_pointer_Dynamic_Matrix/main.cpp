@@ -45,7 +45,7 @@ void main() {
     fillRandTrianMatrix(triMatrix, rows);
     printTrianMatrix(triMatrix, rows);
 
-    // Освобождение памяти
+    
     for (int i = 0; i < rows; i++) {
         delete[] matrix[i];
         delete[] triMatrix[i];
