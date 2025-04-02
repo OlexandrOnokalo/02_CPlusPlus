@@ -1129,14 +1129,155 @@ void main(){
 	char matrix[ROWS][COLS]{ 'a','b','c','d' };// то створюється матриця з символів
 #endif
 
+}
+
+========================================================================
+21_Structure
+Структури
+
+const int size = 20;
+struct Dog    - структура з наступними змінними, Dog як шаблон
+{
+	char nick[size] = "Noname"; - значення по дефолту
+	char size[size] = "Unknown";
+	int age = 0;
+	char color[size] = "Nocolor;
+	
+};
 
 
 
+void printDog(const Dog& dog)     ставимо const щоб не можна було змінити, а посилання бо так швидше чим просто копія (витрачається лишній час)
+{
+	cout << "\nDog's nick : " << dog.nick << endl;
+	cout << "Dog's size: " << dog.size << endl;
+	cout << "Dog's age : " << dog.age << endl;
+	cout << "Dog's color : " << dog.color << endl;
+	cout << endl;
+}
+
+void inputDog{Dog& dog) - функція має змінювати ставимо за посилання & 
+{
+	cout << "Enter nick : ";
+	cin >> dog.nick;
+	cout << "Enter size : ";
+	cin >> dog.size;
+	cout << "Enter age : ";
+	cin >> dog.age;
+	cout << "Enter color : ";
+	cin >> dog.color;
+}
+
+
+Dog olderDog(const & dog1, const Dog & dog2)
+{
+	 if (dog1.age >= dog2.age)
+		 return dog1;
+	 return dog2;
+}
+
+
+
+dog.nick = це беспосередньо змінна
+dog->age=5; - це посилання
+
+	
+main(){
+	Dog dog{"Jack", "medium", .....};  - створили екземпляр dog типу Dog
+	dog.age = 2; - Вказуємо значення змінної age в dog
+	
+	cin >> dog.nick; - захватуємо з клавіатури
+	
+	Dog cloneJack = dog; - всі елементи об"єкта dog скопіюється в cloneJack
+	
+	
+	
+	Dog * dog3 = new Dog("bobik", "Big", 4, "black");
+	
+	dog->age=5; - операція доступу до елемента структури через вказівник
+	printDog(*dog3);
+	
+	// . операція доступу до елемента структури через обєкт 
+	// -> операція доступу до елемента структури через вказівник 	
+	
+	}
+	
+	
+Массив структура
+array of structs
+
+struct Product
+{
+	char name[MAX_LEN];
+	double price;
+};
+
+
+
+void printProduct(const Product& product)
+{
+	cout << "Product: '" << product.name << "', price: " << product.price << endl;
+}
+
+void printShop(const Product  shop[], int actualSize)
+{
+	for (int i = 0; i < actualSize; i++)
+	{
+		cout << "#" << i + 1 << "\t";
+		printProduct(shop[i]);
+	}
+}
+
+void printProducts(const Product shop[], int actualSize, const char* name)
+{
+	cout << "Products with name like '" << name << "'\n";
+	for (int i = 0; i < actualSize; i++)
+	{
+		//if (_stricmp(name, shop[i].name) == 0) // чи співпадають рядки?
+		if (strstr(shop[i].name, name)!=nullptr) // чи name є частинрою назви товару shop[i].name
+		{
+			printProduct(shop[i]);
+		}
+	}
 }
 
 
 
 
+
+
+
+main(){
+	const int MAX_SIZE = 10;
+
+	int actualSize = 3;
+	Product shop[MAX_SIZE]
+	{
+		{"Bread bread", 2.20},
+		{"Bread white", 1.80},
+		{"Yogurt", 3.10},
+		{"Apple juice", 2.77},
+	};
+	printShop(shop, actualSize);
+	cout << endl;
+
+	printProducts(shop, actualSize, "Bread");
+	cout << endl;
+	Product milk{ "Milk", 2.45 };	
+	addProduct(milk, shop, actualSize, MAX_SIZE);
+	printShop(shop, actualSize);
 	
+}
+
+}
+
+
+========================================================================
+	
+	
+	
+	
+
+
 	
 	
