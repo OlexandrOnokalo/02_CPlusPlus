@@ -158,28 +158,28 @@ void printProducts(const Product shop[], int actualSize, const char* name)
 
 
 
-int main()
-{
-		/*rectangle rec{};
-	cout << "Enter size of rectangle:" << endl;
-	inputRectangle(rec);
-	printRectangle(rec);
-	cout << "Change rectangle:" << endl;
-	changeHeigh(rec);
-	changeWidth(rec);
-	printRectangle(rec);
-	cout << "Area = " << area(rec) << "\nPerimeter = " << perimeter(rec) << endl;*/
-
-	/*coordinates cor1;
-	coordinates cor2;
-	cout << "Enter coordinates of point 1: " << endl;
-	inputCoordinates(cor1);
-	cout << "Enter coordinates of point 2: " << endl;
-	inputCoordinates(cor2);
-	cout << "Distance: " << distance(cor1, cor2) << endl;*/
-
-
-
-}
+//int main()
+//{
+//	rectangle rec{};
+//	cout << "enter size of rectangle:" << endl;
+//	inputrectangle(rec);
+//	printrectangle(rec);
+//	cout << "change rectangle:" << endl;
+//	changeheigh(rec);
+//	changewidth(rec);
+//	printrectangle(rec);
+//	cout << "area = " << area(rec) << "\nperimeter = " << perimeter(rec) << endl;
+//
+//	coordinates cor1;
+//	coordinates cor2;
+//	cout << "enter coordinates of point 1: " << endl;
+//	inputcoordinates(cor1);
+//	cout << "enter coordinates of point 2: " << endl;
+//	inputcoordinates(cor2);
+//	cout << "distance: " << distance(cor1, cor2) << endl;
+//
+//
+//
+//}
 
 

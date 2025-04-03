@@ -1241,12 +1241,6 @@ void printProducts(const Product shop[], int actualSize, const char* name)
 	}
 }
 
-
-
-
-
-
-
 main(){
 	const int MAX_SIZE = 10;
 
