@@ -1267,11 +1267,129 @@ main(){
 
 
 ========================================================================
+22_Nested structs_Dynamic_array_struts
+
+Вкладені структури. Масив структур. Робота з файлами
+
+﻿#include <iostream>
+#include <cstring>
+#include <string>
+
+using namespace std;
+
+const int NAME_SIZE = 100;
+const int POSITION_SIZE = 50;
+const int EMAIL_SIZE = 100;
+const int PHONE_SIZE = 20;
+
 	
-	
-	
-	
+struct Employee {
+	//char fullName[NAME_SIZE];
+	string fullName;
+	char position[POSITION_SIZE];
+	int age;
+
+	struct Contacts {
+		char email[EMAIL_SIZE];
+		char phone[PHONE_SIZE];
+	};
+
+	Contacts contacts;
+};
 
 
+employee.contacts.email - доступ до поля вкладенної структури
+
+Employee::Contacts contacts = {"coname@gmail.com","XXXXXXXX"]; - доступ якщо структура вкладена
+
+
+void printContacts(const Employee::Contacts contacts)
+{
+	cout << "Email: " << contacts.email << endl;
+	cout << "Phone: " << contacts.phone << endl;
+}
+
+void printEmployee(const Employee& employee)
+{
+	cout << "Full Name: " << employee.fullName << endl;
+	cout << "Position: " << employee.position << endl;
+	cout << "Age: " << employee.age << endl;
+	printContacts(employee.contacts);
+}
+
+
+
+
+void addEmployee(const Employee& empl, Employee*& company, int & actualSize, int& capacity)
+{
+	if (actualSize >= capacity)
+	{
+		cout << "Not enough space!\n";
+		return;
+	}
+	++actualSize;
+	Employee* tmp = new Employee[actualSize];
+	for (int i = 0; i < actualSize - 1; i++)
+	{
+		tmp[i] = company[i];
+	}
+	tmp[actualSize - 1] = empl;
+
+	delete[] company;
+	company = tmp;
+}
+
+
+
+
+int main()
+{
+	int capacity = 10;
+
+	int actualSize = 0;
+	Employee* company = new Employee[capacity];// nullptr
+
+	Employee emp{ "Daria D.", "QA", 24, {"daria@gmail.com", "0908678565656"} };
+	addEmployee(emp, company, actualSize, capacity);
 	
+	Employee emp2{ "Sergii S.", "BA", 34, {"sergii@gmail.com", "09086788888"} };
+	addEmployee(emp2, company, actualSize, capacity);
+
+	printCompany(company, actualSize);
+
+	delete[] company;
+}
+
+
+
+
+
+Запис у файл
+
+#include <fstream> - file stream
+
+int main()
+{
+	string fname = "my.txt"; (файл створиться або перезапишеться, якщо вже є)
+	ofstream f(fname); // створили обєкт файлового потоку f і повязали цей потік з фізичним файлом
+	if (!fout.is_open())
+    {
+        cout << "Error opening file\n";
+        return 0;
+    }
+	f << "Hello"; - записує в файл
+	f.close(); - закриває файл
 	
+	ifstream fin(fname);
+    char readText[256];
+    int readValue;
+
+    //fin >> readText; // прочитає перше слово
+    fin.getline(readText, 100);
+    fin >> readValue;
+
+    cout << "Read text from file : " << readText << endl;
+    cout << "Read value from file : " << readValue << endl;
+	
+}
+
