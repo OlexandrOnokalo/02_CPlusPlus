@@ -1402,10 +1402,11 @@ struct - масив різнотипних данних. - object (складн�
 
 Три кити ООР
 	-інкапсуляція Encapsulation - властивість пов"язати дані та методи роботи всереди класу (в клас ми вкладаємо змінні, що характеризують обєкт і методи работи з цими змінними)
-		- змінні члени класу треба приховати
-		-
+		- змінні члени класу треба приховати to private
+		- далі в паблік пишемо методи роботи з змінними
 	
 	-наслідування inheritance - роблять базовий клас і на основі його роблять дочірниій клас
+	
 	-поліморфізм - економія понять. Коли у багатьох класах метод називається однаково а реаліхацію має свою.
 		
 	Метод (функція) завантажити.
@@ -1447,12 +1448,175 @@ int main()
 	st.setName("Tom"); - використовуємо сеттер щоб внести значення
 	cout << st.getName(); - геттер вертає імя
 
+setter getter -це по замовчуванні інлайнові функції
+
 
 
 getline(cin, name1);
 ========================================================================
+24_Constructor_Destructor
+
+Constructor, Destructor
 
 
+Конструктор - це функція що завжди належить до свого  завжди має назву классу і має ()
+Не повертає значення, не пишеться void return.
+По замовченюванні конструктор вже є.
+А самостійно можно очистити сміття і вказування дефолтних значень під час конструкції
+
+Конструкторів може бути безліч
+
+Student st2("Tom","tomson" ... )  - це параметризований конструктор, при створенні обєкта засускається один з конструкторів в залежності від кількості аргументів і типів данних. А нема аргументів, то дефолтний. 
+	Але якщо є тільки створений конструктор з параметрами, то дефолтний не буде спрацьовувати
+	
+Деструктор - якщо нема динамічних данних, то деструктор не потрібен, вистачає дефолтного. А якщо є динамічні дані то обовязково треба. Деструктором вказується черговість видалення данних
+
+
+
+struct PIB {
+	string name;
+	string surname;
+	string lastname;
+};
+struct Birthday {
+	int day;
+	int month;
+	int year;
+};
+
+class Student
+{
+private:
+	PIB fullname;
+	Birthday birthday;
+	string phone;
+	string city;
+	string country;
+	string university_name;
+	string university_city;
+	string university_country;
+	string group; !!!!!!!
+	int* marks;  - цей вказівник поки пустий
+	int markCount;  - поки що нуль
+	float average;
+public:
+	Student() - конструктор в заміну дефолтному без аргументів, ctor + Tab
+	{
+		cout << "Default constructor " << endl;
+		fullname.name = "no name";
+		fullname.surname = "no surname";
+		fullname.lastname = "no lastname";
+		birthday.day = 0;
+		birthday.month = 0;
+		birthday.year = 0;
+		phone = "no phone";
+		city = "no city";
+		country = "no country";
+		university_name = "no university_name";
+		university_city = "no university_city";
+		university_country = "no university_country";
+		group = "no group";
+		marks = nullptr;
+		markCount = 0;
+		average = 0;
+	}
+	Student(string name, string surname, string lastname) - це параметризований конструктор(опис вище)
+	{
+		cout << "Parametrized constructor " << endl;
+		fullname.name = name;
+		fullname.surname = surname;
+		fullname.lastname = lastname;
+		birthday.day = 0;
+		birthday.month = 0;
+		birthday.year = 0;
+		phone = "no phone";
+		city = "no city";
+		country = "no country";
+		university_name = "no university_name";
+		university_city = "no university_city";
+		university_country = "no university_country";
+		group = "no group";
+		marks = nullptr;
+		markCount = 0;
+		average = 0;
+
+	}
+	
+	void SetName(string name) - сеттери
+	{
+		fullname.name = name;
+	}
+	void SetSurName(string surname)
+	{
+		fullname.surname = surname;
+	}
+	void SetLastName(string lastname)
+	{
+		fullname.lastname = lastname;
+	}
+	
+	void Print()
+	{
+		cout << fullname.name << endl;
+		cout<< fullname.surname << endl;
+		cout<< fullname.lastname << endl;
+		cout<< birthday.day << endl;
+		cout<< birthday.month << endl;
+		cout<< birthday.year << endl;
+		cout<< phone << endl;
+		cout<< city << endl;
+		cout<< country << endl;
+		cout<< university_name << endl;
+		cout<< university_city << endl;
+		cout<< university_country << endl;
+		cout<< group << endl;
+		cout<< "marks : " ;
+		for (int i = 0; i < markCount; i++)
+		{
+			cout << marks[i] << " ";
+		}
+		cout << endl;
+		cout<< markCount << endl;
+		cout<< average << endl;
+	}
+	void AddMark(int mark)
+	{
+		//marks = nullptr;
+		//markCount = 0
+		markCount++;         - змінюємо динамічний масив
+		int* temp = new int[markCount];
+		for (int i = 0; i < markCount - 1; i++)
+		{
+			temp[i] = marks[i];
+		}
+		temp[markCount - 1] = mark;
+		if (marks != nullptr)
+			delete[] marks;     - чистимо память на яку вказує маркс
+		marks = temp; - назначаємо на вказівник маркс новий массив на який вказував темп
+		setAverageMark();
+	}
+	
+	
+	~Student() - деструктор. Пищем ~ + TAB
+	{
+		cout << "Destructor " << fullname.name << endl;
+		//Delete();
+		if (marks != nullptr)
+			delete[] marks;
+	}
+	
+		
+}
+
+int main{)
+{
+	Student student;  - спрацьовує дефолтний конструктор, або створенний але без аргументів
+	student.Print();
+	
+	Student st2("Tom", "Tomson", "Lastname"); - це параметризований конструктор, при створенні обєкта засускається один з конструкторів в залежності від кількості аргументів і типів данних. А нема аргументів, то дефолтний. 
+	Але якщо є тільки створений конструктор з параметрами, то дефолтний не буде спрацьовувати
+	
+}
 
 
 	

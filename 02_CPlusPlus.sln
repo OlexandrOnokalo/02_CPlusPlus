@@ -45,6 +45,8 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "22_Nested structs_Dynamic_a
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "23_IntroToOOP", "23_IntroToOOP\23_IntroToOOP.vcxproj", "{7787FB8F-7B41-4EAB-AC78-7140383AE3E6}"
 EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "24_Constructor_Destructor", "24_Constructor_Destructor\24_Constructor_Destructor.vcxproj", "{14AF1A8E-A899-47B2-8F22-CCF22A9CC3BC}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -307,6 +309,18 @@ Global
 		{7787FB8F-7B41-4EAB-AC78-7140383AE3E6}.Release|x64.Build.0 = Release|x64
 		{7787FB8F-7B41-4EAB-AC78-7140383AE3E6}.Release|x86.ActiveCfg = Release|Win32
 		{7787FB8F-7B41-4EAB-AC78-7140383AE3E6}.Release|x86.Build.0 = Release|Win32
+		{14AF1A8E-A899-47B2-8F22-CCF22A9CC3BC}.Debug|Any CPU.ActiveCfg = Debug|x64
+		{14AF1A8E-A899-47B2-8F22-CCF22A9CC3BC}.Debug|Any CPU.Build.0 = Debug|x64
+		{14AF1A8E-A899-47B2-8F22-CCF22A9CC3BC}.Debug|x64.ActiveCfg = Debug|x64
+		{14AF1A8E-A899-47B2-8F22-CCF22A9CC3BC}.Debug|x64.Build.0 = Debug|x64
+		{14AF1A8E-A899-47B2-8F22-CCF22A9CC3BC}.Debug|x86.ActiveCfg = Debug|Win32
+		{14AF1A8E-A899-47B2-8F22-CCF22A9CC3BC}.Debug|x86.Build.0 = Debug|Win32
+		{14AF1A8E-A899-47B2-8F22-CCF22A9CC3BC}.Release|Any CPU.ActiveCfg = Release|x64
+		{14AF1A8E-A899-47B2-8F22-CCF22A9CC3BC}.Release|Any CPU.Build.0 = Release|x64
+		{14AF1A8E-A899-47B2-8F22-CCF22A9CC3BC}.Release|x64.ActiveCfg = Release|x64
+		{14AF1A8E-A899-47B2-8F22-CCF22A9CC3BC}.Release|x64.Build.0 = Release|x64
+		{14AF1A8E-A899-47B2-8F22-CCF22A9CC3BC}.Release|x86.ActiveCfg = Release|Win32
+		{14AF1A8E-A899-47B2-8F22-CCF22A9CC3BC}.Release|x86.Build.0 = Release|Win32
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

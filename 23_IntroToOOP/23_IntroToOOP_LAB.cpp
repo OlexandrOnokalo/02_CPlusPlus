@@ -30,6 +30,17 @@ public:
     double getY()  { return y; }
     double getZ()  { return z; }
 
+    void SetX(double x) {
+        this->x = x;
+    }
+    void SetY(double y) {
+        this->y = y;
+    }
+    void SetX(double z) {
+        this->z = z;
+    }
+
+
     
     void saveToFile(const string& filename)  {
         ofstream outFile(filename);
@@ -132,6 +143,47 @@ public:
 
 
     int getGroupNumber()  { return groupNumber; }
+
+
+    void setName(string name) {
+        this->name = name;
+    }
+
+    void setDateOfBirth(string dateOfBirth) {
+        this->dateOfBirth = dateOfBirth;
+    }
+
+    void setPhoneNumber(string phoneNumber) {
+        this->phoneNumber = phoneNumber;
+    }
+
+    void setCity(string city) {
+        this->city = city;
+    }
+
+    void setCountry(string country) {
+        this->country = country;
+    }
+
+    void setInstitutionName(string institutionName) {
+        this->institutionName = institutionName;
+    }
+    
+    void setInstitutionCity(string institutionCity) {
+        this->institutionName = institutionCity;
+    }
+    
+    void setinstitutionCountry(string institutionCountry) {
+        this->institutionCountry = institutionCountry;
+    }
+
+    void setПroupNumber(int groupNumber) {
+        this->groupNumber = groupNumber;
+    }
+    
+
+
+
 };
 
 
