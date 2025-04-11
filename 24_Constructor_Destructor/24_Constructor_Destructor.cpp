@@ -28,6 +28,8 @@ void SetPos(int x, int y)
     SetConsoleCursorPosition(GetStdHandle(STD_OUTPUT_HANDLE), c);
 }
 
+
+
 struct Coord {
     int x;
     int y;
