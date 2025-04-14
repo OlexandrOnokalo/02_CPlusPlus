@@ -25,6 +25,8 @@ struct Vagon {
     int passengers;
 };
 
+
+
 class Train {
 private:
     string model;
@@ -41,6 +43,22 @@ public:
     Train(string model)
     {
         this->model = model;
+        vagonCount = 0;
+        vagons = nullptr;
+    }
+    Train(const Train& other) {
+        this->model = other.model;
+        this->vagonCount = other.vagonCount;
+
+        if (vagonCount > 0) {
+            this->vagons = new Vagon[vagonCount];
+            for (int i = 0; i < vagonCount; ++i) {
+                this->vagons[i] = other.vagons[i];
+            }
+        }
+        else {
+            this->vagons = nullptr;
+        }
     }
     void AddVagon(Vagon vagon)
     {
@@ -58,7 +76,7 @@ public:
     void print() {
         cout << "Train model: " << model << endl;
         cout << "Vagon counter: " << vagonCount << endl;
-        for (int i = 0; i < vagonCount-1; i++)
+        for (int i = 0; i < vagonCount; i++)
         {
             cout << "Vagon number: " << vagons[i].number << endl;
             cout << "Vagon places: " << vagons[i].places << endl;
@@ -66,22 +84,19 @@ public:
         }
     }
     void addOnePas(int vagonNumber) {
-        for (int i = 0; i < vagonCount; i++)
-        {            
-            if (vagons[i].number == vagonNumber)
-            {
+        bool found = false;
+        for (int i = 0; i < vagonCount; i++) {
+            if (vagons[i].number == vagonNumber) {
                 vagons[i].passengers++;
+                found = true;
+                break;
             }
-            else
-            {
-                cout << "Wrong vagon number" << endl;
-            }
-
         }
-        
-        
-
+        if (!found) {
+            cout << "Wrong vagon number" << endl;
+        }
     }
+
 };
 
 
@@ -89,6 +104,25 @@ public:
 
 int main()
 {
-    
+    Train tr1;
+    Train tr2("Kia");
+    tr1.print();
+    tr2.print();
+    cout << endl;
+    Train tr3(tr2);
+    tr3.print();
+    cout << endl;
+    Vagon vagon1{ 1,20,10 };
+    tr1.AddVagon(vagon1);
+    tr1.print();
+    cout << endl;
+    tr1.addOnePas(1);
+    tr1.print();
+
+
+
+
+
+
 }
 

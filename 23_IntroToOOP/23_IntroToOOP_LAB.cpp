@@ -36,7 +36,7 @@ public:
     void SetY(double y) {
         this->y = y;
     }
-    void SetX(double z) {
+    void SetZ(double z) {
         this->z = z;
     }
 
