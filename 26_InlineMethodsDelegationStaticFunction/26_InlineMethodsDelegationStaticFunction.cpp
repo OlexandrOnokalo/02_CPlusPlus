@@ -85,13 +85,13 @@ public:
         cout << "Additional: " << additional << endl;
     }
 
-    string getName() const { return PIB; }
-    string getHomePhone() const { return homePhone; }
-    string getWorkPhone() const { return workPhone; }
-    string getMobilePhone() const { return mobilePhone; }
+    string getName()   { return PIB; }
+    string getHomePhone()   { return homePhone; }
+    string getWorkPhone()   { return workPhone; }
+    string getMobilePhone()   { return mobilePhone; }
 
 
-    void saveToFile(ofstream& file) const {
+    void saveToFile(ofstream& file)   {
         file << PIB << endl
             << homePhone << endl
             << workPhone << endl
@@ -124,7 +124,7 @@ public:
         }
     }
 
-    void AddAbonent(const Abonent& abonent) {
+    void AddAbonent(  Abonent& abonent) {
         size++;
         Abonent* temp = new Abonent[size];
         for (int i = 0; i < size - 1; i++) {
