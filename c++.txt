@@ -54,6 +54,8 @@ cout << "You have to pay : " << price << " grn"; - вивід змінної pri
 		bool - 1байт true false
 	
 	enum - набір цілочісельних констант
+		
+		enum Genre{none,History,Comedy} і тд - 
 
 перетворення типів даних:
 	Звужуюча форма (втрачаються частина даних) неявне
@@ -2080,7 +2082,117 @@ istream& operator >> (istream& in, Point& other)
 	
 	
 ========================================================================	
+30_LibraryOperator=
+
+Файли:
+Проект book
+
+проект - адд - клас, там називаємо хедер по назві класу
+Header files/Book.h - header
+утворюється  - source/Book.cpp
+		тут #include <iostream>
+			using namespace std; і так далі
+			
+в хедері описуем класи
+на початку пишемо
+	#pragma once  - для того щоб підключило тільки один раз
+якщо метод в класі довший одного рядка переносим його в Book.cpp  (лампочка і мув дефінітіон)
+!!!! стираємо inline !!!!
+
+
+Book::Book() - це в book.cpp метод але вказується до якого класу цей метод відноситься 
+	{
+	}
+	
+в хедері пишем прототип, нажимаємо на викрутку  і create definition ... і нас перекидає в book.cpp де пишемо уже метод
+
+
+потім маєм файл cpp з назвою проекта де мейн 	
+
+
+для нового класу знову адд клас і додаємо вже Library.h і створюєтся Library.cpp
+
+
+	
+	enum Genre{ None , History, Comedy, Horror, Novel, Roman, Fantasy, 
+	ScienceFiction, Detective} і тд - це тип даних що обєднує якісь значення і доступ до них по індексу
+	
+В классі прописуємо 
+	Genre genre; 
+задаємо значення по замовчанню
+	genre = none;
+	
+
+В классі прописуємо 
+	Genre genre; 
+
+	class Book
+	{
+		int id;
+		string title;
+		int year;
+		string author;
+		int pages;
+		Genre genre;
 	
 	
 	
 	
+switch (вказується enum genre) і нажимаємо  мишкою і формується готовий свіч 
+	
+	void Book::ShowInfo() const
+{
+	cout << "Id : " << id << endl;
+	cout << "Title : " << title << endl;
+	cout << "Author : " << author << endl;
+	cout << "Pages : " << pages << endl;
+	cout << "Genre : ";
+	switch (genre)
+	{
+	case None:cout << "None" << endl;break;
+	case History:cout << "History" << endl;	break;
+	case Comedy:cout << "Comedy" << endl;break;
+	case Horror:cout << "Horror" << endl;break;
+	і тд.
+	
+	
+	
+Конструктор переносу
+		Library(Library && other)
+		{
+			this->name = other.name;
+			this->books = other.books; перенос адресу масиву
+			other.books = nullptr; - забирає у темпа вказку на адресу масиву
+		}
+		
+Опаратор =
+
+class Test  - що є в класі по замовчуванні
+{
+    //default constructor
+    //destructor 
+    //copy constructor
+    //operator =
+};
+
+Конструктор копіювання спрацьовує для нового обєкта.
+а в операторі = треба ще й почистити в тому обєкті в який копіюєм  масив
+
+	Library& Library::operator=(const Library& other)
+	{
+		this->name = other.name;
+		this->countBook = other.countBook;
+		if (books != nullptr)
+			delete[]books;
+		this->books = new Book[countBook];
+		for (int i = 0; i < countBook; i++)
+		{
+			this->books[i] = other.books[i];
+		}
+		return *this;
+	}
+
+========================================================================
+
+
+		
