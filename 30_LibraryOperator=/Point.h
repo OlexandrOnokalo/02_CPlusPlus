@@ -1,33 +1,20 @@
 #pragma once
+#include <iostream>
+#include <windows.h> 
+using namespace std;
+
 class Point
 {
-	int x;
-	int y;
+    int x;
+    int y;
 public:
-	Point()
-	{
-		x = y = 0;
-	}
-    Point operator++(int a)
-    {
-        this->x++;
-        this->y++;
-        return *this;
-    }
-    Point operator--(int)
-    {
-        this->x--;
-        this->y--;
-        return *this;
-    }
-    bool operator >(const Point& other)
-    {
-        return  (this->x + this->y) > (other.x + other.y);
-    }
-    bool operator <(const Point& other)
-    {
-        return  (this->x + this->y) < (other.x + other.y);
-    }
-
+    Point();
+    Point(int x, int y);
+    Point operator++(int);
+    Point operator--(int);
+    bool operator >(const Point& other);
+    bool operator <(const Point& other);
+    void Show() const;
+    void ShowAtCoords() const;
 };
 
