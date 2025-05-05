@@ -1,2 +1,5 @@
-﻿  Vector.cpp
+﻿  30_LibraryOperator=.cpp
+d:\My Documents\__IT STEP Academy__\02_C++\OlexandrOnokalo\02_CPlusPlus\30_LibraryOperator=\30_LibraryOperator=.cpp(5,6): warning C4326: возвращаемый тип "main" должен быть "int", а не "void"
+  Vector.cpp
+  Создание кода...
   30_LibraryOperator=.vcxproj -> d:\My Documents\__IT STEP Academy__\02_C++\OlexandrOnokalo\02_CPlusPlus\x64\Debug\30_LibraryOperator=.exe
