@@ -1,5 +1,6 @@
 ﻿#include <iostream>
 #include <initializer_list>
+#include <string>
 using namespace std;
 
 
@@ -15,7 +16,6 @@ using namespace std;
 	мінімуму, сортування масиву(будь - яким алгоритмом
 		сортування), двійкового пошуку в масиві, заміни  елемента
 	масиву на передане значення.Ці методи винести за межі класу*/
-
 
 
 
@@ -82,15 +82,21 @@ public:
 
     int GetSize() const { return size; }
 
-    T* GetData() const { return arr; }
+    
+    T GetMax() const;
+    T GetMin() const;
+    void Sort();
+    int BinarySearch(T value) const;
+    void Replace(int index, T newValue);
 };
 
 
+
 template <typename T>
-T GetMax(const Array<T>& arr)
+T Array<T>::GetMax() const
 {
     T max = arr[0];
-    for (int i = 1; i < arr.GetSize(); i++)
+    for (int i = 1; i < size; i++)
     {
         if (arr[i] > max)
             max = arr[i];
@@ -98,12 +104,11 @@ T GetMax(const Array<T>& arr)
     return max;
 }
 
-
 template <typename T>
-T GetMin(const Array<T>& arr)
+T Array<T>::GetMin() const
 {
     T min = arr[0];
-    for (int i = 1; i < arr.GetSize(); i++)
+    for (int i = 1; i < size; i++)
     {
         if (arr[i] < min)
             min = arr[i];
@@ -111,13 +116,12 @@ T GetMin(const Array<T>& arr)
     return min;
 }
 
-
 template <typename T>
-void Sort(Array<T>& arr)
+void Array<T>::Sort()
 {
-    for (int i = 0; i < arr.GetSize() - 1; i++)
+    for (int i = 0; i < size - 1; i++)
     {
-        for (int j = 0; j < arr.GetSize() - i - 1; j++)
+        for (int j = 0; j < size - i - 1; j++)
         {
             if (arr[j] > arr[j + 1])
                 swap(arr[j], arr[j + 1]);
@@ -125,12 +129,11 @@ void Sort(Array<T>& arr)
     }
 }
 
-
 template <typename T>
-int BinarySearch(const Array<T>& arr, T value)
+int Array<T>::BinarySearch(T value) const
 {
     int left = 0;
-    int right = arr.GetSize() - 1;
+    int right = size - 1;
 
     while (left <= right)
     {
@@ -146,15 +149,16 @@ int BinarySearch(const Array<T>& arr, T value)
     return -1; 
 }
 
-
 template <typename T>
-void Replace(Array<T>& arr, int index, T newValue)
+void Array<T>::Replace(int index, T newValue)
 {
-    if (index >= 0 && index < arr.GetSize())
+    if (index >= 0 && index < size)
     {
         arr[index] = newValue;
     }
 }
+
+
 
 int main()
 {
@@ -162,34 +166,32 @@ int main()
     Array<int> arr = { 5, 2, 9, 1, 6 };
     arr.Print();
 
-    cout << "Max element: " << GetMax(arr) << endl;
-    cout << "Min element: " << GetMin(arr) << endl;
+    cout << "Max element: " << arr.GetMax() << endl;
+    cout << "Min element: " << arr.GetMin() << endl;
 
     cout << "Sorting array..." << endl;
-    Sort(arr);
+    arr.Sort();
     arr.Print();
 
     int searchValue = 6;
-    int index = BinarySearch(arr, searchValue);
+    int index = arr.BinarySearch(searchValue);
     if (index != -1)
         cout << "Value " << searchValue << " found at index: " << index << endl;
     else
         cout << "Value " << searchValue << " not found." << endl;
 
     cout << "Replacing element at index 2 with 100..." << endl;
-    Replace(arr, 2, 100);
+    arr.Replace(2, 100);
     arr.Print();
 
-    cout << "Creating string array: {\"apple\", \"banana\", \"pear\"}" << endl;
+    cout << "\nCreating string array: {\"apple\", \"banana\", \"pear\"}" << endl;
     Array<string> fruits = { "apple", "banana", "pear" };
     fruits.Print();
 
     cout << "Sorting string array..." << endl;
-    Sort(fruits);
+    fruits.Sort();
     fruits.Print();
 
     return 0;
 }
-
-
 

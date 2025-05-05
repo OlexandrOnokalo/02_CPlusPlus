@@ -72,23 +72,23 @@ public:
     ~Stack() = default;
 };
 
-int main()
-{
-    Stack st;
-    st.Push('a');
-    st.Push('b');
-    st.Push('c');
-    st.Print();
-    cout << "Count : " << st.GetCount() << endl;
-
-    while (!st.IsEmpty())
-    {
-        cout << st.Pop() << endl;
-    }
-    cout << "Count : " << st.GetCount() << endl;
-
-   
-}
+//int main()
+//{
+//    Stack st;
+//    st.Push('a');
+//    st.Push('b');
+//    st.Push('c');
+//    st.Print();
+//    cout << "Count : " << st.GetCount() << endl;
+//
+//    while (!st.IsEmpty())
+//    {
+//        cout << st.Pop() << endl;
+//    }
+//    cout << "Count : " << st.GetCount() << endl;
+//
+//   
+//}
 
 
 
