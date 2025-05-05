@@ -2295,8 +2295,262 @@ main()
 	Array arr3({ 10,11,12,13,14,15,16,17,18,19,20,21,22,23 }); 
 	
 	
+========================================================================
+OOP Dynamic Data Structures. Stack. Queue
+
+Динамічні структури даних
+
+32_01_Stack
+
+Stack - динамічниа структура даних, по суті масив.
+ 
+!!!!!!!!! First in last out, last in first out - тобто перший зайшов в самий кінець, і виходить останнім після всіх хто зайшов після.
 
 
+class Stack
+{
+	enum {EMPTY = -1, FULL = 9}  
+	int arr[FULL+1]; 
+	int topIndex;
+public:     -в середині класу є такі методи:
+
+	//default
+    //delete
+    //c-tor default
+    //destructor
+    //c-tor copy
+    //move c-tor
+    //operator =
+	
+
+	
+	
+	Stack (const Stack& other) = delete; - вказуємо що конструктор копіювання заборонено. 
+	
+	Це можна прописати тільки до стандартних методів, щоб вказати або дефолтну або заборонено
+
+	
+	Stack () - конструктор призначає топ індексу -1
+	{
+		topIndex = EMPTY;
+	}
+	bool Push(int elem)  - зміщає топ індекс на 1 і зберігає туди новий елемент
+	 {
+        if (!IsFull())
+        {
+            ++topIndex;
+            arr[topIndex] = elem;
+            //vs
+            //arr[++topIndex] = elem;
+            return true;
+        }
+        return false;
+    }
+	bool IsFull()const
+    {
+        return topIndex == FULL;
+    }
+    bool IsEmpty()const
+    {
+        return topIndex == EMPTY;
+    }
+	void Pop      - видаляє останній елемент
+	{
+        if (!IsEmpty())
+            
+            return arr[topIndex--];          
+    }
+	int GetCount()const
+    {
+        return topIndex + 1;
+    }
+    void Clear()
+    {
+        topIndex = EMPTY;
+    }
+    void Print()const
+    {
+        for (int i = 0; i < GetCount(); i++)
+        {
+            cout << arr[i] << " ";
+        }
+        cout << endl;
+    }
+	
+	~Stack()=defaut; - вказуємо що цей дуструктор використовується по дефолту, іншого не створиш
+	
+}
+
+32_02_DinamicStack
+
+class Stack {
+	enum{EMPTY = -1};
+	int* arr;
+	int size;
+	int topIndex;
+public:
+	Stack () = delete; - забороняємо пустий конструктор, залишаючі тільки параметизований
+	Stack(int size):size(size)//100
+	{
+		arr = new int[size];
+		topIndex = EMPTY;
+	}
+	bool IsFull()const
+	{
+		return topIndex == size - 1;
+	}
+	bool Push(int elem)
+	{
+		if (!IsFull())
+		{
+			arr[++topIndex] = elem;
+			return true;
+		}
+		return false;
+	}
+	bool IsEmpty()const
+	{
+		return topIndex == EMPTY;
+	}
+	int Pop()
+	{
+		if (!IsEmpty())
+		{
+			return arr[topIndex--];
+		}
+	}
+	int Peek() - показує останній доданий елемент
+	{
+		if (!IsEmpty())
+		{
+			return arr[topIndex];
+		}
+	}
+	int GetCount()const
+	{
+		return topIndex + 1;
+	}
+	void Clear()
+	{
+		topIndex = EMPTY;
+	}
+	void Print()const
+	{
+		for (int i = 0; i < GetCount(); i++)
+		{
+			cout << arr[i] << " ";
+		}
+		cout << endl;
+	}
+	~Stack()
+	{
+		if (arr != nullptr)
+			delete[]arr;
+	}
+};
+}
+
+int main()
+{
+	Stack st(15);
+	
+	
+32_03_Queue
+
+Черга - перший прийшов, перший пішов. Останній пришов, останній пішов
+
+class Quaue
+{
+	int* arr;
+	int maxSize;
+	int topIndex;
+public:
+	Queue()=default; - якщо вказаний будь який інший конструктор, то дефолтного не буде. А тут вказуємо щоб він залишався
+	Queue(int max)
+    {
+        this->maxSize = max;
+        arr = new int[maxSize];
+        topIndex = 0;
+    }
+    bool IsEmpty()const
+    {
+        return topIndex == 0;
+    }
+    bool IsFull()const
+    {
+        return topIndex == maxSize;
+    }
+	
+	
+	void Enqueue (int elem) - додавання елементу в кінець
+	{
+        if (!IsFull())
+        {
+            arr[topIndex++] = elem;
+        }
+    }	
+	int Dequeue () - удаляємо перший, і всі інші елементи посунуться на одну комірку вперед
+	{
+        if (!IsEmpty())
+        {
+            int first = arr[0];
+            for (int i = 0; i < topIndex; i++)
+            {
+                arr[i] = arr[i + 1];
+            }
+            topIndex--;
+            return first;
+        }
+    }
+	int Dequeue()   - видаляємо перший, всі елементи на одну комірку вперед і перший стає в кінець
+    {
+        //кругова черга 
+        if (!IsEmpty())
+        {
+            int first = arr[0];
+            for (int i = 0; i < topIndex; i++)
+            {
+                arr[i] = arr[i + 1];
+            }
+            //topIndex--;
+            arr[topIndex - 1] = first;
+            return first;
+        }
+    }
+	int GetCount()
+    {
+        return topIndex;
+    }
+    void Clear()
+    {
+        topIndex = 0;
+    }
+
+    void Show()
+    {
+        for (int i = 0; i < topIndex; i++)
+        {
+            cout << arr[i] << " ";
+        }
+        cout << endl;
+    }
+
+    ~Queue()
+    {
+        if (arr != nullptr)
+            delete[]arr;
+    }
+
+
+}
+
+
+#include <conio.h>
+
+int num;
+cin >> num; - бере до ентера
+
+_getch(); - ловить один символ, зараз використовуємо як затримка монітора
 
 
 
