@@ -34,7 +34,7 @@ private:
     {
         T value;
         Node* next;
-        //c-tors....show()
+        
         Node(T value, Node* next) :value(value), next(next) {}
     };
     Node* head;
@@ -45,21 +45,18 @@ public:
     }
     void AddToHead(T value)
     {
-        /* Node* newNode = new Node;
-         newNode->value = value;
-         newNode->next = head;*/
+        
         Node* newNode = new Node(value, head);
         head = newNode;
     }
-    void Print()const
+    void Print() const
     {
         Node* current = head;
-        while (current != nullptr)
+        while (current)
         {
-            cout << current->value << " ";
+            current->value.Show();
             current = current->next;
         }
-        cout << endl;
     }
     ~List()
     {
@@ -87,6 +84,7 @@ public:
             current->next = newNode;
         }
     }
+
     T GetElement(int pos)
     {
         Node* current = head;
@@ -129,6 +127,13 @@ public:
         }
 
 
+    }
+    void DeleteFromHead()
+    {
+        if (head == nullptr) return;
+        Node* temp = head;
+        head = head->next;
+        delete temp;
     }
 };
 
@@ -201,36 +206,55 @@ void Point::ShowAtCoords() const {
 
 class Vector
 {
-	List<Point> points;
+    List<Point> points;
     int countPoint;
-public:
-    Vector()
-    {
 
-        countPoint = 0;
+public:
+    Vector() : countPoint(0) {}
+
+    void AddToHead(const Point& pt)
+    {
+        points.AddToHead(pt);
+        countPoint++;
     }
 
+    void AddToTail(const Point& pt)
+    {
+        points.AddToTail(pt);
+        countPoint++;
+    }
+
+    void DeleteFromHead()
+    {
+        points.DeleteFromHead();
+        if (countPoint > 0) countPoint--;
+    }
+
+    void Print() const
+    {
+        points.Print();
+        cout << "Total Points: " << countPoint << endl;
+    }
 };
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 int main()
 {
-    Point p;
-    
+    Vector v;
+    v.AddToHead(Point(1, 2));
+    v.AddToHead(Point(3, 4));
+    v.AddToTail(Point(5, 6));
+
+    cout << "Initial list of points:\n";
+    v.Print();
+
+    cout << "\nDeliting from head...\n";
+    v.DeleteFromHead();
+    v.Print();
+
+    cout << "\nAdding new point to tail...\n";
+    v.AddToTail(Point(7, 8));
+    v.Print();
+
+    return 0;
 }
