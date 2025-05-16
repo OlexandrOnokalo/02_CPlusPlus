@@ -91,18 +91,18 @@ public:
         delete[] visas;
     }
 };
-
-
-int main() {
-    cout << "=== Aspirant ===" << endl;
-    Aspirant a("Ivan Ivanov", 24, "KNU", "Neural Networks in Medicine");
-    a.Show();
-
-    cout << "\n=== Foreign Passport ===" << endl;
-    ForeignPassport fp("Petrenko Olga", "MP123456", "1990-02-01", "FP987654");
-    fp.AddVisa("USA 2023");
-    fp.AddVisa("France 2022");
-    fp.Show();
-
-    return 0;
-}
+//
+//
+//int main() {
+//    cout << "=== Aspirant ===" << endl;
+//    Aspirant a("Ivan Ivanov", 24, "KNU", "Neural Networks in Medicine");
+//    a.Show();
+//
+//    cout << "\n=== Foreign Passport ===" << endl;
+//    ForeignPassport fp("Petrenko Olga", "MP123456", "1990-02-01", "FP987654");
+//    fp.AddVisa("USA 2023");
+//    fp.AddVisa("France 2022");
+//    fp.Show();
+//
+//    return 0;
+//}
