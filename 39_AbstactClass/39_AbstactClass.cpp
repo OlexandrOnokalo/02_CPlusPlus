@@ -150,38 +150,38 @@ public:
         delete[] points;
     }
 };
-
-
-int main() {
-    
-    Point p1 = { 10, 5 };
-    Point p2 = { 30, 5 };
-    Line l(p1, p2);
-
-    Point topLeft = { 5, 10 };
-    MyRectangle r(topLeft, 15, 6);
-
-    Point pts[4] = { {10,22}, {12,24}, {14,23}, {16,25} };
-    MyPolyline pl(pts, 4);
-
-    
-    l.Print();
-    r.Print();
-    pl.Print();
-
-    
-    ofstream fout("shapes.txt");
-    if (fout.is_open()) {
-        l.Save(fout);
-        r.Save(fout);
-        pl.Save(fout);
-        fout.close();
-        cout << "\nShapes saved to shapes.txt" << endl;
-    }
-    else {
-        cout << "Failed to open file for writing." << endl;
-    }
-
-    return 0;
-}
+//
+//
+//int main() {
+//    
+//    Point p1 = { 10, 5 };
+//    Point p2 = { 30, 5 };
+//    Line l(p1, p2);
+//
+//    Point topLeft = { 5, 10 };
+//    MyRectangle r(topLeft, 15, 6);
+//
+//    Point pts[4] = { {10,22}, {12,24}, {14,23}, {16,25} };
+//    MyPolyline pl(pts, 4);
+//
+//    
+//    l.Print();
+//    r.Print();
+//    pl.Print();
+//
+//    
+//    ofstream fout("shapes.txt");
+//    if (fout.is_open()) {
+//        l.Save(fout);
+//        r.Save(fout);
+//        pl.Save(fout);
+//        fout.close();
+//        cout << "\nShapes saved to shapes.txt" << endl;
+//    }
+//    else {
+//        cout << "Failed to open file for writing." << endl;
+//    }
+//
+//    return 0;
+//}
 
