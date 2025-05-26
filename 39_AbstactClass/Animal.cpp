@@ -107,7 +107,7 @@ public:
     Life() : foxCount(0), rabbitCount(0), grassCount(0) {}
 
     void AddFox(Fox* fox) {
-        if (foxCount < 10 && foxCount < 5) {
+        if (foxCount < 5) {
             foxes[foxCount++] = fox;
         }
     }
