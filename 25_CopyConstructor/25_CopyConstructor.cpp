@@ -119,7 +119,7 @@ int main()
     tr1.addOnePas(1);
     tr1.print();
 
-
+    
 
 
 
