@@ -3111,3 +3111,157 @@ exception --> logic_error --> invalid_argument
 Можна ловити спочатку дочірню помилку, якщо для неї кетча немає то спрацює кетч батьківського класск
 
 кетчі розташовувати починаючи з самих дочірніх, а потім середні а в кінці уже catch(...)
+
+========================================================================
+44_01_SaveReadFile
+
+
+#include <fstream>
+
+ofstream
+ifstream
+fstream
+
+
+
+Запис у файл   text
+
+#include <fstream> - file stream
+
+int main()
+{
+	string fname = "my.txt"; (файл створиться або перезапишеться, якщо вже є)
+	ofstream f(fname); // створили обєкт файлового потоку f і повязали цей потік з фізичним файлом
+	if (!fout.is_open())
+    {
+        cout << "Error opening file\n";
+        return 0;
+    }
+	f << "Hello"; - записує в файл
+	f.close(); - закриває файл
+	
+	ifstream fin(fname);
+    char readText[256];
+    int readValue;
+
+    //fin >> readText; // прочитає перше слово
+    fin.getline(readText, 100);
+    fin >> readValue;
+
+    cout << "Read text from file : " << readText << endl;
+    cout << "Read value from file : " << readValue << endl;
+	
+}
+
+Запис у файл  text
+	#include <fstream>
+
+	ofstream fileOut; - підключаємо потік до файлу
+	fileOut.open("file") - вказуємо шлях до файлу
+	або
+	ofstream fileOut("file));
+
+	if (!fout.is_open())
+
+
+	fileOut << !!!!!!!
+
+
+	!!!
+	cout !!!!!
+
+
+	fileOut.close; - закриття файлу
+
+
+Зчитати з файла text
+
+	ifstream fileIn;
+	fileIn.open("file.txt")
+	
+	!!!!
+	
+	
+
+	string str1;
+	
+	while!!!!!
+
+		getline!!!!!!!
+
+	fileIn.close();
+	
+	
+	
+Бінарний запис  (для ООР)
+
+	ofstream fileOut("binary!!!!!!!
+	
+	
+	fileOut.write!!!!   - 
+	
+	
+========================================================================
+44_02_ZooSaveToFile
+
+ofstream& operator <<(ofstream& out, const Animal& animal)	 	- функція перезавантаження оператора <<
+{
+	out << animal.name << " " << animal.type << " " << animal.age << " " << animal.weight;
+	return out;
+}
+ifstream& operator >>(ifstream& in,  Animal& animal) 
+{
+	in >> animal.name >> animal.type >> animal.age >> animal.weight;
+	return in;
+}
+	
+
+class Zoo{
+	string name;
+	Animal* animals;
+	int countAnimal
+public
+	Zoo():name("no name"), animals(nullptr),countAnimal(0){}
+	Zoo(string name):name(name), animals(nullptr),countAnimal(0){}
+	
+	void AddAnimal(Animal an)//3 + 1
+	{
+		countAnimal++;//4
+		Animal* temp = new Animal[countAnimal];
+		for (int i = 0; i < countAnimal-1; i++) - створюємо массив обєктів енімал
+		{
+			temp[i] = animals[i];
+		}
+		temp[countAnimal - 1] = an;
+		delete[]animals;
+		animals = temp;
+	}
+	
+	void BinaryWrite()
+	{
+		ofstream out("Zoo.bin", ios_base::out | ios_base::binary); -  	out запис, binary - бінарним методом
+		out.write((char *)&name, sizeof(name)); - переиворюємо на чаровий массив, передаємо оригінал по посиланню, далі в size of вказуємо тип данних щоб воно зрозуміло розмір потоку ці данні (тут стрінга, поле нейм)
+		out.write((char *)&countAnimal, sizeof(countAnimal));
+		for (int i = 0; i < countAnimal; i++)
+		{
+		out.write((char *)&animals[i], sizeof(animals[i]));
+
+		}
+		out.close();
+		cout << "Save to file  binary" << endl;
+	}
+	
+	void BinaryRead()
+	{
+		ifstream in("Zoo.bin", ios_base::in | ios_base::binary);
+		in.read((char*)&name, sizeof(name));
+		in.read((char*)&countAnimal, sizeof(countAnimal));
+		animals = new Animal[countAnimal];
+		for (int i = 0; i < countAnimal; i++)
+		{
+			in.read((char*)&animals[i], sizeof(animals[i]));
+			
+		}
+		in.close();
+
+	}
