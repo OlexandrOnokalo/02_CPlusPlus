@@ -187,18 +187,18 @@ public:
 };
 
 
-int main() {
-
-    Point p1;
-    p1.input();  
-    p1.output(); 
-    p1.saveToFile("point.txt");
-    p1.loadFromFile("point.txt"); 
-
-
-    Student s1;
-    s1.input();  
-    s1.output(); 
-
-    return 0;
-}
+//int main() {
+//
+//    Point p1;
+//    p1.input();  
+//    p1.output(); 
+//    p1.saveToFile("point.txt");
+//    p1.loadFromFile("point.txt"); 
+//
+//
+//    Student s1;
+//    s1.input();  
+//    s1.output(); 
+//
+//    return 0;
+//}
