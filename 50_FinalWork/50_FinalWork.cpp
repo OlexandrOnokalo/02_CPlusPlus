@@ -347,524 +347,251 @@ public:
     }
 };
 
+class Deanery {
+    vector<Subject> subjects;
+    vector<Group> groups;
+    vector<Teacher> teachers;
+    vector<Student> students;
+public:
 
+    //унікальність
 
-vector<Subject> subjects;      
-vector<Group> groups;          
-vector<Teacher> teachers;      
-vector<Student> students;     
-
-//А от я знаю що Ви зараз мене запитаєте ))))))))
-//бо мало елементів, доступ по індексу, тра часто пробігати 
-
-
-
-//унікальність
-
-//айді і імя студента
-void checkStudentUnique(int id, const string& name) {
-    for (const auto& s : students) {
-        if (s.getId() == id) throw invalid_argument("Duplicate student ID.");
-        if (s.getFullName() == name) throw invalid_argument("Duplicate student name.");
+    //айді і імя студента
+    void checkStudentUnique(int id, const string& name) {
+        for (const auto& s : students) {
+            if (s.getId() == id) throw invalid_argument("Duplicate student ID.");
+            if (s.getFullName() == name) throw invalid_argument("Duplicate student name.");
+        }
     }
-}
 
-// викладача
-void checkTeacherUnique(int id, const string& name) {
-    for (const auto& t : teachers) {
-        if (t.getId() == id) throw invalid_argument("Duplicate teacher ID.");
-        if (t.getFullName() == name) throw invalid_argument("Duplicate teacher name.");
+    // викладача
+    void checkTeacherUnique(int id, const string& name) {
+        for (const auto& t : teachers) {
+            if (t.getId() == id) throw invalid_argument("Duplicate teacher ID.");
+            if (t.getFullName() == name) throw invalid_argument("Duplicate teacher name.");
+        }
     }
-}
 
-// предмета
-void checkSubjectUnique(const string& name) {
-    for (const auto& sub : subjects) {
-        if (sub.getName() == name) throw invalid_argument("Duplicate subject name.");
-    }
-}
-
-// групи
-void checkGroupUnique(const string& gid) {
-    for (const auto& g : groups) {
-        if (g.getId() == gid) throw invalid_argument("Duplicate group ID.");
-    }
-}
-
-
-//пошук
-
-
-//індекс студента по айді
-int findStudentIndexByID(int id) {
-    for (int i = 0; i < (int)students.size(); ++i) {
-        if (students[i].getId() == id) return i;
-    }
-    return -1;
-}
-
-// по імені
-int findStudentIndexByName(const string& name) {
-    for (int i = 0; i < (int)students.size(); ++i) {
-        if (students[i].getFullName() == name) return i;
-    }
-    return -1;
-}
-
-// викладач за айді
-int findTeacherIndexByID(int id) {
-    for (int i = 0; i < (int)teachers.size(); ++i) {
-        if (teachers[i].getId() == id) return i;
-    }
-    return -1;
-}
-
-// викладач за імям
-int findTeacherIndexByName(const string& name) {
-    for (int i = 0; i < (int)teachers.size(); ++i) {
-        if (teachers[i].getFullName() == name) return i;
-    }
-    return -1;
-}
-
-// предмет за назвою
-int findSubjectIndexByName(const string& name) {
-    for (int i = 0; i < (int)subjects.size(); ++i) {
-        if (subjects[i].getName() == name) return i;
-    }
-    return -1;
-}
-
-// індекс групи за айді
-int findGroupIndexByID(const string& gid) {
-    for (int i = 0; i < (int)groups.size(); ++i) {
-        if (groups[i].getId() == gid) return i;
-    }
-    return -1;
-}
-
-// таблична красота і ляпота
-
-// студенти + оцінки
-void printAllStudents() {
-    if (students.empty()) {
-        cout << "No students in database.\n";
-        return;
-    }
-    
-    //заголовок
-    cout << left << setw(6) << "ID"
-        << setw(25) << "Full Name"
-        << setw(12) << "BirthDate"
-        << setw(8) << "Group";
-    //колонки
-    for (const auto& sub : subjects) {
-        cout << setw(8) << sub.getName().substr(0, 7);
-    }
-    cout << "\n";
-
-    // лінії
-    int totalWidth = 6 + 25 + 12 + 8 + 8 * (int)subjects.size();
-    cout << string(totalWidth, '=') << "\n";
-
-    // рядки інфи студентів
-    for (const auto& s : students) {
-        
-        cout << left << setw(6) << s.getId()
-            << setw(25) << s.getFullName()
-            << setw(12) << s.getBirthDate()
-            << setw(8) << s.getGroupID();
-        //оцінки
-        auto grades = s.getGrades();
+    // предмета
+    void checkSubjectUnique(const string& name) {
         for (const auto& sub : subjects) {
-            auto it = grades.find(sub.getName());
-            if (it != grades.end()) {
-                cout << setw(8) << it->second;
-            }
-            else {
-                cout << setw(8) << "-";
-            }
+            if (sub.getName() == name) throw invalid_argument("Duplicate subject name.");
+        }
+    }
+
+    // групи
+    void checkGroupUnique(const string& gid) {
+        for (const auto& g : groups) {
+            if (g.getId() == gid) throw invalid_argument("Duplicate group ID.");
+        }
+    }
+
+
+    //пошук
+
+
+    //індекс студента по айді
+    int findStudentIndexByID(int id) {
+        for (int i = 0; i < (int)students.size(); ++i) {
+            if (students[i].getId() == id) return i;
+        }
+        return -1;
+    }
+
+    // по імені
+    int findStudentIndexByName(const string& name) {
+        for (int i = 0; i < (int)students.size(); ++i) {
+            if (students[i].getFullName() == name) return i;
+        }
+        return -1;
+    }
+
+    // викладач за айді
+    int findTeacherIndexByID(int id) {
+        for (int i = 0; i < (int)teachers.size(); ++i) {
+            if (teachers[i].getId() == id) return i;
+        }
+        return -1;
+    }
+
+    // викладач за імям
+    int findTeacherIndexByName(const string& name) {
+        for (int i = 0; i < (int)teachers.size(); ++i) {
+            if (teachers[i].getFullName() == name) return i;
+        }
+        return -1;
+    }
+
+    // предмет за назвою
+    int findSubjectIndexByName(const string& name) {
+        for (int i = 0; i < (int)subjects.size(); ++i) {
+            if (subjects[i].getName() == name) return i;
+        }
+        return -1;
+    }
+
+    // індекс групи за айді
+    int findGroupIndexByID(const string& gid) {
+        for (int i = 0; i < (int)groups.size(); ++i) {
+            if (groups[i].getId() == gid) return i;
+        }
+        return -1;
+    }
+
+    // таблична красота і ляпота
+
+    // студенти + оцінки
+    void printAllStudents() {
+        if (students.empty()) {
+            cout << "No students in database.\n";
+            return;
+        }
+
+        //заголовок
+        cout << left << setw(6) << "ID"
+            << setw(25) << "Full Name"
+            << setw(12) << "BirthDate"
+            << setw(8) << "Group";
+        //колонки
+        for (const auto& sub : subjects) {
+            cout << setw(8) << sub.getName().substr(0, 7);
         }
         cout << "\n";
-    }
-}
 
-// прінт викладачів
-void printAllTeachers() {
-    if (teachers.empty()) {
-        cout << "No teachers in database.\n";
-        return;
-    }
-    cout << left << setw(6) << "ID"
-        << setw(25) << "Full Name"
-        << setw(12) << "BirthDate"
-        << "Subjects\n";
-    cout << string(70, '=') << "\n";
-    for (const auto& t : teachers) {
-        t.display();
-    }
-}
+        // лінії
+        int totalWidth = 6 + 25 + 12 + 8 + 8 * (int)subjects.size();
+        cout << string(totalWidth, '=') << "\n";
 
-// груп
-void printAllGroups() {
-    if (groups.empty()) {
-        cout << "No groups in database.\n";
-        return;
-    }
-    cout << left << setw(8) << "GroupID" << "\n";
-    cout << string(8, '=') << "\n";
-    for (const auto& g : groups) {
-        g.display();
-    }
-}
+        // рядки інфи студентів
+        for (const auto& s : students) {
 
-// предметів
-void printAllSubjects() {
-    if (subjects.empty()) {
-        cout << "No subjects in database.\n";
-        return;
-    }
-    cout << left << setw(30) << "Subject Name" << "\n";
-    cout << string(30, '=') << "\n";
-    for (const auto& sub : subjects) {
-        sub.display();
-    }
-}
-
-//додавання
-
-void addStudent() {
-    try {
-        int id = 1;
-        if (!students.empty()) {
-            for (const auto& s : students) {
-                id = max(id, s.getId() + 1);  //шукаєм наступне айді
+            cout << left << setw(6) << s.getId()
+                << setw(25) << s.getFullName()
+                << setw(12) << s.getBirthDate()
+                << setw(8) << s.getGroupID();
+            //оцінки
+            auto grades = s.getGrades();
+            for (const auto& sub : subjects) {
+                auto it = grades.find(sub.getName());
+                if (it != grades.end()) {
+                    cout << setw(8) << it->second;
+                }
+                else {
+                    cout << setw(8) << "-";
+                }
             }
+            cout << "\n";
         }
-        cout << "Assigned student ID: " << id << "\n";
-
-        string name, birth, gid;
-        cout << "Enter student full name: ";
-        getline(cin, name);
-
-        cout << "Enter birth date (DD.MM.YYYY): ";
-        getline(cin, birth);
-
-        
-        printAllGroups();
-        cout << "Enter group ID: ";
-        getline(cin, gid);
-
-        //унікальність
-        checkStudentUnique(id, name);
-
-        // чи існує группа
-        if (findGroupIndexByID(gid) < 0) {
-            throw invalid_argument("Group ID does not exist.");
-        }
-
-        
-        validateNonEmptyString(name, "Student full name");
-        validateDate(birth);
-        validateNonEmptyString(gid, "Group ID");
-
-        Student s(id, name, birth, gid);
-        students.push_back(s);
-        cout << "Student added successfully.\n";
     }
-    catch (const exception& e) {
-        cout << "Error adding student: " << e.what() << "\n";
-    }
-}
 
-
-void addTeacher() {
-    try {
-        int id = 1;
-        if (!teachers.empty()) {
-            for (const auto& t : teachers) {
-                id = max(id, t.getId() + 1);
-            }
+    // прінт викладачів
+    void printAllTeachers() {
+        if (teachers.empty()) {
+            cout << "No teachers in database.\n";
+            return;
         }
-        cout << "Assigned teacher ID: " << id << "\n";
+        cout << left << setw(6) << "ID"
+            << setw(25) << "Full Name"
+            << setw(12) << "BirthDate"
+            << "Subjects\n";
+        cout << string(70, '=') << "\n";
+        for (const auto& t : teachers) {
+            t.display();
+        }
+    }
 
-        string name, birth;
-        vector<string> tsubs;
-        cout << "Enter teacher full name: ";
-        getline(cin, name);
+    // груп
+    void printAllGroups() {
+        if (groups.empty()) {
+            cout << "No groups in database.\n";
+            return;
+        }
+        cout << left << setw(8) << "GroupID" << "\n";
+        cout << string(8, '=') << "\n";
+        for (const auto& g : groups) {
+            g.display();
+        }
+    }
 
-        cout << "Enter birth date (DD.MM.YYYY): ";
-        getline(cin, birth);
-
-        
+    // предметів
+    void printAllSubjects() {
         if (subjects.empty()) {
-            throw runtime_error("No subjects available. Add subjects first.");
+            cout << "No subjects in database.\n";
+            return;
         }
-        cout << "Available subjects:\n";
-        printAllSubjects();
-        cout << "Enter number of subjects this teacher will teach: ";
-        int count;
-        cin >> count;
-        cin.ignore(numeric_limits<streamsize>::max(), '\n');  //до победного конца
-        if (count <= 0) throw invalid_argument("Teacher must teach at least one subject.");
+        cout << left << setw(30) << "Subject Name" << "\n";
+        cout << string(30, '=') << "\n";
+        for (const auto& sub : subjects) {
+            sub.display();
+        }
+    }
 
-        for (int i = 0; i < count; ++i) {
-            string sname;
-            cout << "Enter subject name #" << (i + 1) << ": ";
-            getline(cin, sname);
-            if (findSubjectIndexByName(sname) < 0) {
-                throw invalid_argument("Subject '" + sname + "' does not exist.");
+    //додавання
+
+    void addStudent() {
+        try {
+            int id = 1;
+            if (!students.empty()) {
+                for (const auto& s : students) {
+                    id = max(id, s.getId() + 1);  //шукаєм наступне айді
+                }
             }
-            tsubs.push_back(sname);
-        }
+            cout << "Assigned student ID: " << id << "\n";
 
-        
-        checkTeacherUnique(id, name);
+            string name, birth, gid;
+            cout << "Enter student full name: ";
+            getline(cin, name);
 
-        
-        validateNonEmptyString(name, "Teacher full name");
-        validateDate(birth);
-
-        Teacher t(id, name, birth, tsubs);
-        teachers.push_back(t);
-        cout << "Teacher added successfully.\n";
-    }
-    catch (const exception& e) {
-        cout << "Error adding teacher: " << e.what() << "\n";
-    }
-}
+            cout << "Enter birth date (DD.MM.YYYY): ";
+            getline(cin, birth);
 
 
-void addSubject() {
-    try {
-        string name;
-        cout << "Enter subject name: ";
-        getline(cin, name);
-        validateNonEmptyString(name, "Subject name");
-        
-        checkSubjectUnique(name);
-        Subject sub(name);
-        subjects.push_back(sub);
-        cout << "Subject added successfully.\n";
-    }
-    catch (const exception& e) {
-        cout << "Error adding subject: " << e.what() << "\n";
-    }
-}
+            printAllGroups();
+            cout << "Enter group ID: ";
+            getline(cin, gid);
+
+            //унікальність
+            checkStudentUnique(id, name);
+
+            // чи існує группа
+            if (findGroupIndexByID(gid) < 0) {
+                throw invalid_argument("Group ID does not exist.");
+            }
 
 
-void addGroup() {
-    try {
-        string gid;
-        cout << "Enter group ID (e.g., PV01): ";
-        getline(cin, gid);
-        validateNonEmptyString(gid, "Group ID");
-        checkGroupUnique(gid);
-        Group g(gid);
-        groups.push_back(g);
-        cout << "Group added successfully.\n";
-    }
-    catch (const exception& e) {
-        cout << "Error adding group: " << e.what() << "\n";
-    }
-}
-
-//видалення
-
-// дел студента по айді
-void deleteStudent() {
-    if (students.empty()) {
-        cout << "No students to delete.\n";
-        return;
-    }
-    printAllStudents();
-    cout << "Enter student ID to delete: ";
-    int id;
-    cin >> id;
-    cin.ignore(numeric_limits<streamsize>::max(), '\n');
-    int idx = findStudentIndexByID(id);
-    if (idx < 0) {
-        cout << "Student with ID " << id << " not found.\n";
-        return;
-    }
-    students.erase(students.begin() + idx);
-    cout << "Student deleted successfully.\n";
-}
-
-// викладача за айді
-void deleteTeacher() {
-    if (teachers.empty()) {
-        cout << "No teachers to delete.\n";
-        return;
-    }
-    printAllTeachers();
-    cout << "Enter teacher ID to delete: ";
-    int id;
-    cin >> id;
-    cin.ignore(numeric_limits<streamsize>::max(), '\n');
-    int idx = findTeacherIndexByID(id);
-    if (idx < 0) {
-        cout << "Teacher with ID " << id << " not found.\n";
-        return;
-    }
-    teachers.erase(teachers.begin() + idx);
-    cout << "Teacher deleted successfully.\n";
-}
-
-// Видалення предмета за назвою
-void deleteSubject() {
-    if (subjects.empty()) {
-        cout << "No subjects to delete.\n";
-        return;
-    }
-    printAllSubjects();
-    cout << "Enter subject name to delete: ";
-    string name;
-    getline(cin, name);
-    int idx = findSubjectIndexByName(name);
-    if (idx < 0) {
-        cout << "Subject '" << name << "' not found.\n";
-        return;
-    }
-    // чистим оцінки
-    for (auto& s : students) {
-        s.removeGrade(name);
-    }
-    subjects.erase(subjects.begin() + idx);
-    cout << "Subject deleted successfully.\n";
-}
-
-// групу за айді
-void deleteGroup() {
-    if (groups.empty()) {
-        cout << "No groups to delete.\n";
-        return;
-    }
-    printAllGroups();
-    cout << "Enter group ID to delete: ";
-    string gid;
-    getline(cin, gid);
-    int idx = findGroupIndexByID(gid);
-    if (idx < 0) {
-        cout << "Group '" << gid << "' not found.\n";
-        return;
-    }
-    // чистим номер групи студентам
-    for (auto& s : students) {
-        if (s.getGroupID() == gid) {
-            s.setGroupID("");  
-        }
-    }
-    groups.erase(groups.begin() + idx);
-    cout << "Group deleted successfully.\n";
-}
-
-//редагування
-
-
-void editStudent() {
-    if (students.empty()) {
-        cout << "No students to edit.\n";
-        return;
-    }
-    printAllStudents();
-    cout << "Enter student ID to edit: ";
-    int id;
-    cin >> id;
-    cin.ignore(numeric_limits<streamsize>::max(), '\n');
-    int idx = findStudentIndexByID(id);
-    if (idx < 0) {
-        cout << "Student with ID " << id << " not found.\n";
-        return;
-    }
-
-    try {
-        Student& s = students[idx];
-        cout << "Editing student ID " << s.getId() << ". Leave field empty to keep current value.\n";
-        cout << "Current full name: " << s.getFullName() << "\nEnter new full name: ";
-        string name;
-        getline(cin, name);
-        if (!name.empty()) {
             validateNonEmptyString(name, "Student full name");
-            if (name != s.getFullName()) {
-                for (const auto& other : students) {
-                    if (other.getFullName() == name) throw invalid_argument("Duplicate student name.");
-                }
-                s.setFullName(name);
-            }
-        }
-        cout << "Current birth date: " << s.getBirthDate() << "\nEnter new birth date (DD.MM.YYYY): ";
-        string birth;
-        getline(cin, birth);
-        if (!birth.empty()) {
             validateDate(birth);
-            s.setBirthDate(birth);
+            validateNonEmptyString(gid, "Group ID");
+
+            Student s(id, name, birth, gid);
+            students.push_back(s);
+            cout << "Student added successfully.\n";
         }
-        cout << "Current group ID: " << s.getGroupID() << "\n";
-        printAllGroups();
-        cout << "Enter new group ID: ";
-        string gid;
-        getline(cin, gid);
-        if (!gid.empty()) {
-            if (findGroupIndexByID(gid) < 0) throw invalid_argument("Group ID does not exist.");
-            s.setGroupID(gid);
+        catch (const exception& e) {
+            cout << "Error adding student: " << e.what() << "\n";
         }
-        cout << "Student edited successfully.\n";
-    }
-    catch (const exception& e) {
-        cout << "Error editing student: " << e.what() << "\n";
-    }
-}
-
-
-void editTeacher() {
-    if (teachers.empty()) {
-        cout << "No teachers to edit.\n";
-        return;
-    }
-    printAllTeachers();
-    cout << "Enter teacher ID to edit: ";
-    int id;
-    cin >> id;
-    cin.ignore(numeric_limits<streamsize>::max(), '\n');
-    int idx = findTeacherIndexByID(id);
-    if (idx < 0) {
-        cout << "Teacher with ID " << id << " not found.\n";
-        return;
     }
 
-    try {
-        Teacher& t = teachers[idx];
-        cout << "Editing teacher ID " << t.getId() << ". Leave field empty to keep current value.\n";
-        cout << "Current full name: " << t.getFullName() << "\nEnter new full name: ";
-        string name;
-        getline(cin, name);
-        if (!name.empty()) {
-            validateNonEmptyString(name, "Teacher full name");
-            if (name != t.getFullName()) {
-                for (const auto& other : teachers) {
-                    if (other.getFullName() == name) throw invalid_argument("Duplicate teacher name.");
+
+    void addTeacher() {
+        try {
+            int id = 1;
+            if (!teachers.empty()) {
+                for (const auto& t : teachers) {
+                    id = max(id, t.getId() + 1);
                 }
-                t.setFullName(name);
             }
-        }
-        cout << "Current birth date: " << t.getBirthDate() << "\nEnter new birth date (DD.MM.YYYY): ";
-        string birth;
-        getline(cin, birth);
-        if (!birth.empty()) {
-            validateDate(birth);
-            t.setBirthDate(birth);
-        }
-        // список предметів
-        cout << "Current subjects taught: ";
-        vector<string> currSubs = t.getSubjects();
-        for (size_t i = 0; i < currSubs.size(); ++i) {
-            cout << currSubs[i] << (i + 1 < currSubs.size() ? ", " : "\n");
-        }
-        cout << "Do you want to edit subjects list? (yes/no): ";
-        string ans;
-        getline(cin, ans);
-        if (ans == "yes" || ans == "y") {
+            cout << "Assigned teacher ID: " << id << "\n";
+
+            string name, birth;
+            vector<string> tsubs;
+            cout << "Enter teacher full name: ";
+            getline(cin, name);
+
+            cout << "Enter birth date (DD.MM.YYYY): ";
+            getline(cin, birth);
+
+
             if (subjects.empty()) {
                 throw runtime_error("No subjects available. Add subjects first.");
             }
@@ -873,12 +600,9 @@ void editTeacher() {
             cout << "Enter number of subjects this teacher will teach: ";
             int count;
             cin >> count;
-            cin.ignore(numeric_limits<streamsize>::max(), '\n');
+            cin.ignore(numeric_limits<streamsize>::max(), '\n');  //до победного конца
             if (count <= 0) throw invalid_argument("Teacher must teach at least one subject.");
-            
-            for (auto& sname : currSubs) {
-                t.removeSubject(sname);
-            }
+
             for (int i = 0; i < count; ++i) {
                 string sname;
                 cout << "Enter subject name #" << (i + 1) << ": ";
@@ -886,384 +610,665 @@ void editTeacher() {
                 if (findSubjectIndexByName(sname) < 0) {
                     throw invalid_argument("Subject '" + sname + "' does not exist.");
                 }
-                t.addSubject(sname);
+                tsubs.push_back(sname);
             }
+
+
+            checkTeacherUnique(id, name);
+
+
+            validateNonEmptyString(name, "Teacher full name");
+            validateDate(birth);
+
+            Teacher t(id, name, birth, tsubs);
+            teachers.push_back(t);
+            cout << "Teacher added successfully.\n";
         }
-        cout << "Teacher edited successfully.\n";
-    }
-    catch (const exception& e) {
-        cout << "Error editing teacher: " << e.what() << "\n";
-    }
-}
-
-// група
-void editGroup() {
-    if (groups.empty()) {
-        cout << "No groups to edit.\n";
-        return;
-    }
-    printAllGroups();
-    cout << "Enter group ID to edit: ";
-    string gid;
-    getline(cin, gid);
-    int idx = findGroupIndexByID(gid);
-    if (idx < 0) {
-        cout << "Group '" << gid << "' not found.\n";
-        return;
-    }
-
-    try {
-        Group& g = groups[idx];
-        cout << "Editing group ID " << g.getId() << ". Enter new group ID: ";
-        string newGid;
-        getline(cin, newGid);
-        if (!newGid.empty()) {
-            validateNonEmptyString(newGid, "Group ID");
-            if (newGid != g.getId()) {
-                for (const auto& other : groups) {
-                    if (other.getId() == newGid) throw invalid_argument("Duplicate group ID.");
-                }
-                // перепрописуємо студентам групу
-                for (auto& s : students) {
-                    if (s.getGroupID() == g.getId()) {
-                        s.setGroupID(newGid);
-                    }
-                }
-                g.setId(newGid);
-            }
+        catch (const exception& e) {
+            cout << "Error adding teacher: " << e.what() << "\n";
         }
-        cout << "Group edited successfully.\n";
-    }
-    catch (const exception& e) {
-        cout << "Error editing group: " << e.what() << "\n";
-    }
-}
-
-
-void editSubject() {
-    if (subjects.empty()) {
-        cout << "No subjects to edit.\n";
-        return;
-    }
-    printAllSubjects();
-    cout << "Enter subject name to edit: ";
-    string name;
-    getline(cin, name);
-    int idx = findSubjectIndexByName(name);
-    if (idx < 0) {
-        cout << "Subject '" << name << "' not found.\n";
-        return;
     }
 
-    try {
-        Subject& sub = subjects[idx];
-        cout << "Editing subject '" << sub.getName() << "'. Enter new subject name: ";
-        string newName;
-        getline(cin, newName);
-        if (!newName.empty()) {
-            validateNonEmptyString(newName, "Subject name");
-            if (newName != sub.getName()) {
-                for (const auto& other : subjects) {
-                    if (other.getName() == newName) throw invalid_argument("Duplicate subject name.");
-                }
-                // редактуємо назву у викладачів
-                for (auto& t : teachers) {
-                    vector<string> ts = t.getSubjects();
-                    for (auto& tsub : ts) {
-                        if (tsub == sub.getName()) {
-                            t.removeSubject(sub.getName());
-                            t.addSubject(newName);
-                        }
-                    }
-                }
-                // оновляємо оцінки студентам
-                for (auto& s : students) {
-                    auto grades = s.getGrades();
-                    auto it = grades.find(sub.getName());
-                    if (it != grades.end()) {
-                        int grade = it->second;
-                        s.removeGrade(sub.getName());
-                        s.assignGrade(newName, grade);
-                    }
-                }
-                sub.setName(newName);
-            }
+
+    void addSubject() {
+        try {
+            string name;
+            cout << "Enter subject name: ";
+            getline(cin, name);
+            validateNonEmptyString(name, "Subject name");
+
+            checkSubjectUnique(name);
+            Subject sub(name);
+            subjects.push_back(sub);
+            cout << "Subject added successfully.\n";
         }
-        cout << "Subject edited successfully.\n";
+        catch (const exception& e) {
+            cout << "Error adding subject: " << e.what() << "\n";
+        }
     }
-    catch (const exception& e) {
-        cout << "Error editing subject: " << e.what() << "\n";
-    }
-}
 
-//пошук
 
-// пошук предметів студента за айді або іменем
-void searchStudentSubjects() {
-    if (students.empty()) {
-        cout << "No students in database.\n";
-        return;
+    void addGroup() {
+        try {
+            string gid;
+            cout << "Enter group ID (e.g., PV01): ";
+            getline(cin, gid);
+            validateNonEmptyString(gid, "Group ID");
+            checkGroupUnique(gid);
+            Group g(gid);
+            groups.push_back(g);
+            cout << "Group added successfully.\n";
+        }
+        catch (const exception& e) {
+            cout << "Error adding group: " << e.what() << "\n";
+        }
     }
-    cout << "Find student by:\n1. ID\n2. Full Name\nChoose option: ";
-    int opt;
-    cin >> opt;
-    cin.ignore(numeric_limits<streamsize>::max(), '\n');
-    int sidx = -1;
-    if (opt == 1) {
-        cout << "Enter student ID: ";
+
+    //видалення
+
+    // дел студента по айді
+    void deleteStudent() {
+        if (students.empty()) {
+            cout << "No students to delete.\n";
+            return;
+        }
+        printAllStudents();
+        cout << "Enter student ID to delete: ";
         int id;
         cin >> id;
         cin.ignore(numeric_limits<streamsize>::max(), '\n');
-        sidx = findStudentIndexByID(id);
+        int idx = findStudentIndexByID(id);
+        if (idx < 0) {
+            cout << "Student with ID " << id << " not found.\n";
+            return;
+        }
+        students.erase(students.begin() + idx);
+        cout << "Student deleted successfully.\n";
     }
-    else if (opt == 2) {
-        cout << "Enter student full name: ";
+
+    // викладача за айді
+    void deleteTeacher() {
+        if (teachers.empty()) {
+            cout << "No teachers to delete.\n";
+            return;
+        }
+        printAllTeachers();
+        cout << "Enter teacher ID to delete: ";
+        int id;
+        cin >> id;
+        cin.ignore(numeric_limits<streamsize>::max(), '\n');
+        int idx = findTeacherIndexByID(id);
+        if (idx < 0) {
+            cout << "Teacher with ID " << id << " not found.\n";
+            return;
+        }
+        teachers.erase(teachers.begin() + idx);
+        cout << "Teacher deleted successfully.\n";
+    }
+
+    // Видалення предмета за назвою
+    void deleteSubject() {
+        if (subjects.empty()) {
+            cout << "No subjects to delete.\n";
+            return;
+        }
+        printAllSubjects();
+        cout << "Enter subject name to delete: ";
         string name;
         getline(cin, name);
-        sidx = findStudentIndexByName(name);
+        int idx = findSubjectIndexByName(name);
+        if (idx < 0) {
+            cout << "Subject '" << name << "' not found.\n";
+            return;
+        }
+        // чистим оцінки
+        for (auto& s : students) {
+            s.removeGrade(name);
+        }
+        subjects.erase(subjects.begin() + idx);
+        cout << "Subject deleted successfully.\n";
     }
-    else {
-        cout << "Invalid option.\n";
-        return;
+
+    // групу за айді
+    void deleteGroup() {
+        if (groups.empty()) {
+            cout << "No groups to delete.\n";
+            return;
+        }
+        printAllGroups();
+        cout << "Enter group ID to delete: ";
+        string gid;
+        getline(cin, gid);
+        int idx = findGroupIndexByID(gid);
+        if (idx < 0) {
+            cout << "Group '" << gid << "' not found.\n";
+            return;
+        }
+        // чистим номер групи студентам
+        for (auto& s : students) {
+            if (s.getGroupID() == gid) {
+                s.setGroupID("");
+            }
+        }
+        groups.erase(groups.begin() + idx);
+        cout << "Group deleted successfully.\n";
     }
-    if (sidx < 0) {
-        cout << "Student not found.\n";
-        return;
+
+    //редагування
+
+
+    void editStudent() {
+        if (students.empty()) {
+            cout << "No students to edit.\n";
+            return;
+        }
+        printAllStudents();
+        cout << "Enter student ID to edit: ";
+        int id;
+        cin >> id;
+        cin.ignore(numeric_limits<streamsize>::max(), '\n');
+        int idx = findStudentIndexByID(id);
+        if (idx < 0) {
+            cout << "Student with ID " << id << " not found.\n";
+            return;
+        }
+
+        try {
+            Student& s = students[idx];
+            cout << "Editing student ID " << s.getId() << ". Leave field empty to keep current value.\n";
+            cout << "Current full name: " << s.getFullName() << "\nEnter new full name: ";
+            string name;
+            getline(cin, name);
+            if (!name.empty()) {
+                validateNonEmptyString(name, "Student full name");
+                if (name != s.getFullName()) {
+                    for (const auto& other : students) {
+                        if (other.getFullName() == name) throw invalid_argument("Duplicate student name.");
+                    }
+                    s.setFullName(name);
+                }
+            }
+            cout << "Current birth date: " << s.getBirthDate() << "\nEnter new birth date (DD.MM.YYYY): ";
+            string birth;
+            getline(cin, birth);
+            if (!birth.empty()) {
+                validateDate(birth);
+                s.setBirthDate(birth);
+            }
+            cout << "Current group ID: " << s.getGroupID() << "\n";
+            printAllGroups();
+            cout << "Enter new group ID: ";
+            string gid;
+            getline(cin, gid);
+            if (!gid.empty()) {
+                if (findGroupIndexByID(gid) < 0) throw invalid_argument("Group ID does not exist.");
+                s.setGroupID(gid);
+            }
+            cout << "Student edited successfully.\n";
+        }
+        catch (const exception& e) {
+            cout << "Error editing student: " << e.what() << "\n";
+        }
     }
-    
-    cout << "Subjects for student " << students[sidx].getFullName() << ":\n";
-    printAllSubjects();
-}
 
-// пошук предметів групи
-void searchGroupSubjects() {
-    if (groups.empty()) {
-        cout << "No groups in database.\n";
-        return;
+
+    void editTeacher() {
+        if (teachers.empty()) {
+            cout << "No teachers to edit.\n";
+            return;
+        }
+        printAllTeachers();
+        cout << "Enter teacher ID to edit: ";
+        int id;
+        cin >> id;
+        cin.ignore(numeric_limits<streamsize>::max(), '\n');
+        int idx = findTeacherIndexByID(id);
+        if (idx < 0) {
+            cout << "Teacher with ID " << id << " not found.\n";
+            return;
+        }
+
+        try {
+            Teacher& t = teachers[idx];
+            cout << "Editing teacher ID " << t.getId() << ". Leave field empty to keep current value.\n";
+            cout << "Current full name: " << t.getFullName() << "\nEnter new full name: ";
+            string name;
+            getline(cin, name);
+            if (!name.empty()) {
+                validateNonEmptyString(name, "Teacher full name");
+                if (name != t.getFullName()) {
+                    for (const auto& other : teachers) {
+                        if (other.getFullName() == name) throw invalid_argument("Duplicate teacher name.");
+                    }
+                    t.setFullName(name);
+                }
+            }
+            cout << "Current birth date: " << t.getBirthDate() << "\nEnter new birth date (DD.MM.YYYY): ";
+            string birth;
+            getline(cin, birth);
+            if (!birth.empty()) {
+                validateDate(birth);
+                t.setBirthDate(birth);
+            }
+            // список предметів
+            cout << "Current subjects taught: ";
+            vector<string> currSubs = t.getSubjects();
+            for (size_t i = 0; i < currSubs.size(); ++i) {
+                cout << currSubs[i] << (i + 1 < currSubs.size() ? ", " : "\n");
+            }
+            cout << "Do you want to edit subjects list? (yes/no): ";
+            string ans;
+            getline(cin, ans);
+            if (ans == "yes" || ans == "y") {
+                if (subjects.empty()) {
+                    throw runtime_error("No subjects available. Add subjects first.");
+                }
+                cout << "Available subjects:\n";
+                printAllSubjects();
+                cout << "Enter number of subjects this teacher will teach: ";
+                int count;
+                cin >> count;
+                cin.ignore(numeric_limits<streamsize>::max(), '\n');
+                if (count <= 0) throw invalid_argument("Teacher must teach at least one subject.");
+
+                for (auto& sname : currSubs) {
+                    t.removeSubject(sname);
+                }
+                for (int i = 0; i < count; ++i) {
+                    string sname;
+                    cout << "Enter subject name #" << (i + 1) << ": ";
+                    getline(cin, sname);
+                    if (findSubjectIndexByName(sname) < 0) {
+                        throw invalid_argument("Subject '" + sname + "' does not exist.");
+                    }
+                    t.addSubject(sname);
+                }
+            }
+            cout << "Teacher edited successfully.\n";
+        }
+        catch (const exception& e) {
+            cout << "Error editing teacher: " << e.what() << "\n";
+        }
     }
-    cout << "Enter group ID: ";
-    string gid;
-    getline(cin, gid);
-    int gidx = findGroupIndexByID(gid);
-    if (gidx < 0) {
-        cout << "Group not found.\n";
-        return;
+
+    // група
+    void editGroup() {
+        if (groups.empty()) {
+            cout << "No groups to edit.\n";
+            return;
+        }
+        printAllGroups();
+        cout << "Enter group ID to edit: ";
+        string gid;
+        getline(cin, gid);
+        int idx = findGroupIndexByID(gid);
+        if (idx < 0) {
+            cout << "Group '" << gid << "' not found.\n";
+            return;
+        }
+
+        try {
+            Group& g = groups[idx];
+            cout << "Editing group ID " << g.getId() << ". Enter new group ID: ";
+            string newGid;
+            getline(cin, newGid);
+            if (!newGid.empty()) {
+                validateNonEmptyString(newGid, "Group ID");
+                if (newGid != g.getId()) {
+                    for (const auto& other : groups) {
+                        if (other.getId() == newGid) throw invalid_argument("Duplicate group ID.");
+                    }
+                    // перепрописуємо студентам групу
+                    for (auto& s : students) {
+                        if (s.getGroupID() == g.getId()) {
+                            s.setGroupID(newGid);
+                        }
+                    }
+                    g.setId(newGid);
+                }
+            }
+            cout << "Group edited successfully.\n";
+        }
+        catch (const exception& e) {
+            cout << "Error editing group: " << e.what() << "\n";
+        }
     }
-    
-    cout << "Subjects for group " << gid << ":\n";
-    printAllSubjects();
-}
 
 
+    void editSubject() {
+        if (subjects.empty()) {
+            cout << "No subjects to edit.\n";
+            return;
+        }
+        printAllSubjects();
+        cout << "Enter subject name to edit: ";
+        string name;
+        getline(cin, name);
+        int idx = findSubjectIndexByName(name);
+        if (idx < 0) {
+            cout << "Subject '" << name << "' not found.\n";
+            return;
+        }
 
-
-//ставим оцінки
-
-
-
-void assignGrade() {
-    if (students.empty()) {
-        cout << "No students in database.\n";
-        return;
+        try {
+            Subject& sub = subjects[idx];
+            cout << "Editing subject '" << sub.getName() << "'. Enter new subject name: ";
+            string newName;
+            getline(cin, newName);
+            if (!newName.empty()) {
+                validateNonEmptyString(newName, "Subject name");
+                if (newName != sub.getName()) {
+                    for (const auto& other : subjects) {
+                        if (other.getName() == newName) throw invalid_argument("Duplicate subject name.");
+                    }
+                    // редактуємо назву у викладачів
+                    for (auto& t : teachers) {
+                        vector<string> ts = t.getSubjects();
+                        for (auto& tsub : ts) {
+                            if (tsub == sub.getName()) {
+                                t.removeSubject(sub.getName());
+                                t.addSubject(newName);
+                            }
+                        }
+                    }
+                    // оновляємо оцінки студентам
+                    for (auto& s : students) {
+                        auto grades = s.getGrades();
+                        auto it = grades.find(sub.getName());
+                        if (it != grades.end()) {
+                            int grade = it->second;
+                            s.removeGrade(sub.getName());
+                            s.assignGrade(newName, grade);
+                        }
+                    }
+                    sub.setName(newName);
+                }
+            }
+            cout << "Subject edited successfully.\n";
+        }
+        catch (const exception& e) {
+            cout << "Error editing subject: " << e.what() << "\n";
+        }
     }
-    printAllStudents();
-    cout << "Enter student ID to assign grade: ";
-    int sid;
-    cin >> sid;
-    cin.ignore(numeric_limits<streamsize>::max(), '\n');
-    int sidx = findStudentIndexByID(sid);
-    if (sidx < 0) {
-        cout << "Student not found.\n";
-        return;
+
+    //пошук
+
+    // пошук предметів студента за айді або іменем
+    void searchStudentSubjects() {
+        if (students.empty()) {
+            cout << "No students in database.\n";
+            return;
+        }
+        cout << "Find student by:\n1. ID\n2. Full Name\nChoose option: ";
+        int opt;
+        cin >> opt;
+        cin.ignore(numeric_limits<streamsize>::max(), '\n');
+        int sidx = -1;
+        if (opt == 1) {
+            cout << "Enter student ID: ";
+            int id;
+            cin >> id;
+            cin.ignore(numeric_limits<streamsize>::max(), '\n');
+            sidx = findStudentIndexByID(id);
+        }
+        else if (opt == 2) {
+            cout << "Enter student full name: ";
+            string name;
+            getline(cin, name);
+            sidx = findStudentIndexByName(name);
+        }
+        else {
+            cout << "Invalid option.\n";
+            return;
+        }
+        if (sidx < 0) {
+            cout << "Student not found.\n";
+            return;
+        }
+
+        cout << "Subjects for student " << students[sidx].getFullName() << ":\n";
+        printAllSubjects();
     }
-    if (subjects.empty()) {
-        cout << "No subjects available.\n";
-        return;
+
+    // пошук предметів групи
+    void searchGroupSubjects() {
+        if (groups.empty()) {
+            cout << "No groups in database.\n";
+            return;
+        }
+        cout << "Enter group ID: ";
+        string gid;
+        getline(cin, gid);
+        int gidx = findGroupIndexByID(gid);
+        if (gidx < 0) {
+            cout << "Group not found.\n";
+            return;
+        }
+
+        cout << "Subjects for group " << gid << ":\n";
+        printAllSubjects();
     }
-    printAllSubjects();
-    cout << "Enter subject name to assign grade: ";
-    string subName;
-    getline(cin, subName);
-    int subIdx = findSubjectIndexByName(subName);
-    if (subIdx < 0) {
-        cout << "Subject not found.\n";
-        return;
+
+
+
+
+    //ставим оцінки
+
+
+
+    void assignGrade() {
+        if (students.empty()) {
+            cout << "No students in database.\n";
+            return;
+        }
+        printAllStudents();
+        cout << "Enter student ID to assign grade: ";
+        int sid;
+        cin >> sid;
+        cin.ignore(numeric_limits<streamsize>::max(), '\n');
+        int sidx = findStudentIndexByID(sid);
+        if (sidx < 0) {
+            cout << "Student not found.\n";
+            return;
+        }
+        if (subjects.empty()) {
+            cout << "No subjects available.\n";
+            return;
+        }
+        printAllSubjects();
+        cout << "Enter subject name to assign grade: ";
+        string subName;
+        getline(cin, subName);
+        int subIdx = findSubjectIndexByName(subName);
+        if (subIdx < 0) {
+            cout << "Subject not found.\n";
+            return;
+        }
+        cout << "Enter grade (0–100): ";
+        int gr;
+        cin >> gr;
+        cin.ignore(numeric_limits<streamsize>::max(), '\n');
+        try {
+            students[sidx].assignGrade(subName, gr);
+            cout << "Grade assigned successfully.\n";
+        }
+        catch (const exception& e) {
+            cout << "Error: " << e.what() << "\n";
+        }
     }
-    cout << "Enter grade (0–100): ";
-    int gr;
-    cin >> gr;
-    cin.ignore(numeric_limits<streamsize>::max(), '\n');
-    try {
-        students[sidx].assignGrade(subName, gr);
-        cout << "Grade assigned successfully.\n";
+
+    //збереження
+
+    // збереження всього в тхт
+    void saveDatabase() {
+        try {
+            ofstream ofs("database.txt", ios::binary);
+            if (!ofs) throw runtime_error("Cannot open file for writing.");
+
+            // предмети
+            size_t subCount = subjects.size();
+            ofs.write(reinterpret_cast<const char*>(&subCount), sizeof(subCount));
+            for (const auto& sub : subjects) sub.save(ofs);
+
+            // групи
+            size_t grpCount = groups.size();
+            ofs.write(reinterpret_cast<const char*>(&grpCount), sizeof(grpCount));
+            for (const auto& g : groups) g.save(ofs);
+
+            // вчителі
+            size_t tCount = teachers.size();
+            ofs.write(reinterpret_cast<const char*>(&tCount), sizeof(tCount));
+            for (const auto& t : teachers) t.save(ofs);
+
+            // студенти
+            size_t stCount = students.size();
+            ofs.write(reinterpret_cast<const char*>(&stCount), sizeof(stCount));
+            for (const auto& s : students) s.save(ofs);
+
+            ofs.close();
+            cout << "Database saved successfully.\n";
+        }
+        catch (const exception& e) {
+            cout << "Error saving database: " << e.what() << "\n";
+        }
     }
-    catch (const exception& e) {
-        cout << "Error: " << e.what() << "\n";
+
+    // завантажуєм з тхт
+
+    void loadDatabase() {
+        try {
+            ifstream ifs("database.txt", ios::binary);
+            if (!ifs) throw runtime_error("Cannot open file for reading.");
+
+            subjects.clear();
+            groups.clear();
+            teachers.clear();
+            students.clear();
+
+            // предмети
+            size_t subCount;
+            ifs.read(reinterpret_cast<char*>(&subCount), sizeof(subCount));
+            for (size_t i = 0; i < subCount; ++i) {
+                Subject sub;
+                sub.load(ifs);
+                subjects.push_back(sub);
+            }
+
+            // групи
+            size_t grpCount;
+            ifs.read(reinterpret_cast<char*>(&grpCount), sizeof(grpCount));
+            for (size_t i = 0; i < grpCount; ++i) {
+                Group g;
+                g.load(ifs);
+                groups.push_back(g);
+            }
+
+            // вчителі
+            size_t tCount;
+            ifs.read(reinterpret_cast<char*>(&tCount), sizeof(tCount));
+            for (size_t i = 0; i < tCount; ++i) {
+                Teacher t;
+                t.load(ifs);
+                teachers.push_back(t);
+            }
+
+            // студенти
+            size_t stCount;
+            ifs.read(reinterpret_cast<char*>(&stCount), sizeof(stCount));
+            for (size_t i = 0; i < stCount; ++i) {
+                Student s;
+                s.load(ifs);
+                students.push_back(s);
+            }
+
+            ifs.close();
+            cout << "Database loaded successfully.\n";
+        }
+        catch (const exception& e) {
+            cout << "Error loading database: " << e.what() << "\n";
+        }
     }
-}
 
-//збереження
+    //перший раз в перший клас
 
-// збереження всього в тхт
-void saveDatabase() {
-    try {
-        ofstream ofs("database.txt", ios::binary);
-        if (!ofs) throw runtime_error("Cannot open file for writing.");
 
-        // предмети
-        size_t subCount = subjects.size();
-        ofs.write(reinterpret_cast<const char*>(&subCount), sizeof(subCount));
-        for (const auto& sub : subjects) sub.save(ofs);
+    void initializeData() {
 
-        // групи
-        size_t grpCount = groups.size();
-        ofs.write(reinterpret_cast<const char*>(&grpCount), sizeof(grpCount));
-        for (const auto& g : groups) g.save(ofs);
 
-        // вчителі
-        size_t tCount = teachers.size();
-        ofs.write(reinterpret_cast<const char*>(&tCount), sizeof(tCount));
-        for (const auto& t : teachers) t.save(ofs);
+        //предмети
 
-        // студенти
-        size_t stCount = students.size();
-        ofs.write(reinterpret_cast<const char*>(&stCount), sizeof(stCount));
-        for (const auto& s : students) s.save(ofs);
-
-        ofs.close();
-        cout << "Database saved successfully.\n";
-    }
-    catch (const exception& e) {
-        cout << "Error saving database: " << e.what() << "\n";
-    }
-}
-
-// завантажуєм з тхт
-
-void loadDatabase() {
-    try {
-        ifstream ifs("database.txt", ios::binary);
-        if (!ifs) throw runtime_error("Cannot open file for reading.");
-
-        subjects.clear();
-        groups.clear();
-        teachers.clear();
-        students.clear();
-
-        // предмети
-        size_t subCount;
-        ifs.read(reinterpret_cast<char*>(&subCount), sizeof(subCount));
-        for (size_t i = 0; i < subCount; ++i) {
+        vector<string> initialSubjects = {
+            "Mathematics",
+            "Physics",
+            "Programming",
+            "Algorithms",
+            "DataStructures"
+        };
+        for (auto& name : initialSubjects) {
             Subject sub;
-            sub.load(ifs);
+            sub.setName(name);
             subjects.push_back(sub);
         }
 
         // групи
-        size_t grpCount;
-        ifs.read(reinterpret_cast<char*>(&grpCount), sizeof(grpCount));
-        for (size_t i = 0; i < grpCount; ++i) {
+        vector<string> initialGroups = { "PV01", "PV02", "PV03" };
+        for (auto& gid : initialGroups) {
             Group g;
-            g.load(ifs);
+            g.setId(gid);
             groups.push_back(g);
         }
 
-        // вчителі
-        size_t tCount;
-        ifs.read(reinterpret_cast<char*>(&tCount), sizeof(tCount));
-        for (size_t i = 0; i < tCount; ++i) {
-            Teacher t;
-            t.load(ifs);
+        // викладачі 
+        vector<string> teacherNames = {
+            "Alice Johnson", "Bob Smith", "Carol Lee", "David Brown", "Eve Davis",
+            "Frank Miller", "Grace Wilson", "Hank Moore", "Ivy Taylor", "Jack Anderson"
+        };
+        vector<string> initialDates = {
+            "15.05.1975", "22.11.1980", "30.01.1972", "07.07.1978", "19.09.1970",
+            "04.04.1976", "10.10.1979", "25.12.1973", "11.06.1982", "02.02.1977"
+        };
+        // предмети викладачам, кожному по 2шт
+        for (int i = 0; i < 10; ++i) {
+            int id = i + 1;
+            string fname = teacherNames[i];
+            string birth = initialDates[i];
+            vector<string> subs;
+            subs.push_back(initialSubjects[(i * 2) % 5]);
+            subs.push_back(initialSubjects[(i * 2 + 1) % 5]);
+            Teacher t(id, fname, birth, subs);
             teachers.push_back(t);
         }
 
-        // студенти
-        size_t stCount;
-        ifs.read(reinterpret_cast<char*>(&stCount), sizeof(stCount));
-        for (size_t i = 0; i < stCount; ++i) {
-            Student s;
-            s.load(ifs);
-            students.push_back(s);
+        // студенти..... нє, 45 імен я вигадувати не буду )))
+        int sid = 1;
+        for (auto& gid : initialGroups) {
+            for (int i = 0; i < 15; ++i) {
+                string name = "Student" + to_string(sid);
+
+                string birth = "01.01.2000";
+                Student s(sid, name, birth, gid);
+                students.push_back(s);
+                sid++;
+            }
         }
 
-        ifs.close();
-        cout << "Database loaded successfully.\n";
-    }
-    catch (const exception& e) {
-        cout << "Error loading database: " << e.what() << "\n";
-    }
-}
 
-//перший раз в перший клас
+        saveDatabase();
 
 
-void initializeData() {
-    
-
-    //предмети
-
-    vector<string> initialSubjects = {
-        "Mathematics",
-        "Physics",
-        "Programming",
-        "Algorithms",
-        "DataStructures"
-    };
-    for (auto& name : initialSubjects) {
-        Subject sub;
-        sub.setName(name);
-        subjects.push_back(sub);
     }
 
-    // групи
-    vector<string> initialGroups = { "PV01", "PV02", "PV03" };
-    for (auto& gid : initialGroups) {
-        Group g;
-        g.setId(gid);
-        groups.push_back(g);
-    }
+};
 
-    // викладачі 
-    vector<string> teacherNames = {
-        "Alice Johnson", "Bob Smith", "Carol Lee", "David Brown", "Eve Davis",
-        "Frank Miller", "Grace Wilson", "Hank Moore", "Ivy Taylor", "Jack Anderson"
-    };
-    vector<string> initialDates = {
-        "15.05.1975", "22.11.1980", "30.01.1972", "07.07.1978", "19.09.1970",
-        "04.04.1976", "10.10.1979", "25.12.1973", "11.06.1982", "02.02.1977"
-    };
-    // предмети викладачам, кожному по 2шт
-    for (int i = 0; i < 10; ++i) {
-        int id = i + 1;
-        string fname = teacherNames[i];
-        string birth = initialDates[i];
-        vector<string> subs;
-        subs.push_back(initialSubjects[(i * 2) % 5]);
-        subs.push_back(initialSubjects[(i * 2 + 1) % 5]);
-        Teacher t(id, fname, birth, subs);
-        teachers.push_back(t);
-    }
 
-    // студенти..... нє, 45 імен я вигадувати не буду )))
-    int sid = 1;
-    for (auto& gid : initialGroups) {
-        for (int i = 0; i < 15; ++i) {
-            string name = "Student" + to_string(sid);
-            
-            string birth = "01.01.2000";
-            Student s(sid, name, birth, gid);
-            students.push_back(s);
-            sid++;
-        }
-    }
 
-    
-    saveDatabase();
 
-    
-}
+
 
 // головне меню
+
+
+Deanery deanery;
 
 void studentMenu() {
     while (true) {
@@ -1278,10 +1283,10 @@ void studentMenu() {
         cin >> choice;
         cin.ignore(numeric_limits<streamsize>::max(), '\n');
         switch (choice) {
-        case 1: printAllStudents(); break;
-        case 2: deleteStudent(); break;
-        case 3: addStudent(); break;
-        case 4: editStudent(); break;
+        case 1: deanery.printAllStudents(); break;
+        case 2: deanery.deleteStudent(); break;
+        case 3: deanery.addStudent(); break;
+        case 4: deanery.editStudent(); break;
         case 5: return;
         default: cout << "Invalid option.\n"; break;
         }
@@ -1301,10 +1306,10 @@ void teacherMenu() {
         cin >> choice;
         cin.ignore(numeric_limits<streamsize>::max(), '\n');
         switch (choice) {
-        case 1: printAllTeachers(); break;
-        case 2: deleteTeacher(); break;
-        case 3: addTeacher(); break;
-        case 4: editTeacher(); break;
+        case 1: deanery.printAllTeachers(); break;
+        case 2: deanery.deleteTeacher(); break;
+        case 3: deanery.addTeacher(); break;
+        case 4: deanery.editTeacher(); break;
         case 5: return;
         default: cout << "Invalid option.\n"; break;
         }
@@ -1324,10 +1329,10 @@ void groupMenu() {
         cin >> choice;
         cin.ignore(numeric_limits<streamsize>::max(), '\n');
         switch (choice) {
-        case 1: printAllGroups(); break;
-        case 2: deleteGroup(); break;
-        case 3: addGroup(); break;
-        case 4: editGroup(); break;
+        case 1: deanery.printAllGroups(); break;
+        case 2: deanery.deleteGroup(); break;
+        case 3: deanery.addGroup(); break;
+        case 4: deanery.editGroup(); break;
         case 5: return;
         default: cout << "Invalid option.\n"; break;
         }
@@ -1347,10 +1352,10 @@ void subjectMenu() {
         cin >> choice;
         cin.ignore(numeric_limits<streamsize>::max(), '\n');
         switch (choice) {
-        case 1: printAllSubjects(); break;
-        case 2: deleteSubject(); break;
-        case 3: addSubject(); break;
-        case 4: editSubject(); break;
+        case 1: deanery.printAllSubjects(); break;
+        case 2: deanery.deleteSubject(); break;
+        case 3: deanery.addSubject(); break;
+        case 4: deanery.editSubject(); break;
         case 5: return;
         default: cout << "Invalid option.\n"; break;
         }
@@ -1361,11 +1366,8 @@ int main() {
     ios::sync_with_stdio(false);
     cin.tie(nullptr);
 
-    
-    // initializeData();
-
-    
-    loadDatabase();
+    // deanery.initializeData(); - разкоментувати щоб створити дефолтну базу
+    deanery.loadDatabase();
 
     while (true) {
         cout << "\n=== MAIN MENU ===\n";
@@ -1395,14 +1397,14 @@ int main() {
             int opt;
             cin >> opt;
             cin.ignore(numeric_limits<streamsize>::max(), '\n');
-            if (opt == 1) searchStudentSubjects();
-            else if (opt == 2) searchGroupSubjects();
+            if (opt == 1) deanery.searchStudentSubjects();
+            else if (opt == 2) deanery.searchGroupSubjects();
             else cout << "Invalid option.\n";
             break;
         }
-        case 6: assignGrade(); break;
-        case 7: loadDatabase(); break;
-        case 8: saveDatabase(); break;
+        case 6: deanery.assignGrade(); break;
+        case 7: deanery.loadDatabase(); break;
+        case 8: deanery.saveDatabase(); break;
         case 9:
             cout << "Exiting program.\n";
             return 0;
